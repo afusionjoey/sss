@@ -1,5 +1,1 @@
 platforms/**
-app/**/*.js
-app/**/*.js.map
-hooks/**
-lib/**

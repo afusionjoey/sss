@@ -1,6 +1,10 @@
-<GridLayout columns="50, *, 50" rows="*, *" backgroundColor="lightgray">
-    <Label text="Label 1" col="0" row="0" rowSpan="2" backgroundColor="red"></Label>
-    <WebView id="myWebView" col="1" row="0" rowSpan="2"></WebView>
-    <Label text="Label 3" col="2" row="0" backgroundColor="blue"></Label>
-    <Label text="Label 4" col="2" row="1" backgroundColor="yellow"></Label>
+<GridLayout columns="50, *, 50" backgroundColor="lightgray">
+    <Label text="Label 1" col="0" row="0" backgroundColor="red"></Label>
+    <WebView id="myWebView" col="1" row="0" src="{{ url }}"></WebView>
+
+    <GridLayout col="2" rows="*, 50, *" backgroundColor="lightgray">
+        <Label (tap)="transfer()" text="转" row="0"></Label>
+        <Label (tap)="tap()" text="¥" row="1"></Label>
+        <Label (tap)="save()" text="存" row="2"></Label>
+    </GridLayout>
 </GridLayout>

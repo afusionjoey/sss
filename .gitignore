@@ -1,1 +1,3 @@
-platforms/ios/build/*
+platforms/**
+app/**/*.js
+app/**/*.js.map

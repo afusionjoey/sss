@@ -45,10 +45,14 @@ var GameComponent = (function () {
             // if (dialogs.inputType.text)
         });
     };
+    GameComponent.prototype.menu = function () {
+        alert('menu');
+    };
     GameComponent = __decorate([
         core_1.Component({
             selector: "game",
             templateUrl: "./game/game.component.html",
+            styleUrls: ["game/game.component.css"]
         }), 
         __metadata('design:paramtypes', [])
     ], GameComponent);

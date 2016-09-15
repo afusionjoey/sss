@@ -1,7 +1,7 @@
 "use strict";
 var router_1 = require("nativescript-angular/router");
 var game_component_1 = require("./game/game.component");
-var home_component_1 = require("./game/home.component");
+var home_component_1 = require("./home/home.component");
 // import { AuthGuard } from "./auth.guard";
 exports.routes = [
     { path: "", component: home_component_1.HomeComponent },

@@ -2,7 +2,7 @@ import { RouterConfig } from "@angular/router";
 import { nsProvideRouter } from "nativescript-angular/router";
 
 import { GameComponent } from "./game/game.component";
-import { HomeComponent } from "./game/home.component";
+import { HomeComponent } from "./home/home.component";
 // import { AuthGuard } from "./auth.guard";
 
 export const routes: RouterConfig = [

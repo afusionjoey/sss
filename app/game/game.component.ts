@@ -5,6 +5,7 @@ import dialogs = require("ui/dialogs");
 @Component({
     selector: "game",
     templateUrl: "./game/game.component.html",
+    styleUrls: ["game/game.component.css"]
 })
 export class GameComponent {
     constructor() {};
@@ -52,5 +53,9 @@ export class GameComponent {
             console.log("Response: " + r.result + ", Amount: " + r.text);
             // if (dialogs.inputType.text)
         });
+    }
+
+    menu() {
+        alert('menu');
     }
 }

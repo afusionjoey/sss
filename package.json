@@ -6,27 +6,35 @@
   "nativescript": {
     "id": "org.nativescript.SSS",
     "tns-ios": {
-      "version": "2.2.1"
+      "version": "2.3.0"
     }
   },
   "dependencies": {
-    "@angular/common": "2.0.0-rc.4",
-    "@angular/compiler": "2.0.0-rc.4",
-    "@angular/core": "2.0.0-rc.4",
-    "@angular/http": "2.0.0-rc.4",
-    "@angular/platform-browser": "2.0.0-rc.4",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
-    "@angular/platform-server": "2.0.0-rc.4",
-    "@angular/router": "3.0.0-beta.2",
-    "@angular/router-deprecated": "2.0.0-rc.2",
-    "nativescript-angular": "^0.3.0",
-    "reflect-metadata": "^0.1.5",
-    "rxjs": "5.0.0-beta.6",
-    "tns-core-modules": "2.2.1",
-    "zone.js": "^0.6.12"
+    "nativescript-image-colors": "1.0.2",
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/http": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/platform-server": "2.0.0",
+    "@angular/router": "3.0.0",
+    "nativescript-angular": "1.0.0",
+    "nativescript-screenshot": "0.0.2",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "tns-core-modules": "^2.3.0",
+    "zone.js": "^0.6.21"
   },
   "devDependencies": {
+    "babel-traverse": "6.7.6",
+    "babel-types": "6.7.7",
+    "babylon": "6.7.0",
+    "filewalker": "0.1.2",
+    "lazy": "1.0.11",
+    "nativescript-dev-sass": "^0.3.0",
     "nativescript-dev-typescript": "^0.3.2",
+    "tns-platform-declarations": "^2.2.1",
     "typescript": "^1.8.10"
   }
 }

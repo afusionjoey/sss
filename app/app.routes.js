@@ -1,13 +1,15 @@
-"use strict";
-var router_1 = require("nativescript-angular/router");
-var game_component_1 = require("./game/game.component");
-var home_component_1 = require("./home/home.component");
-// import { AuthGuard } from "./auth.guard";
-exports.routes = [
-    { path: "", component: home_component_1.HomeComponent },
-    { path: "game", component: game_component_1.GameComponent }
-];
-exports.APP_ROUTER_PROVIDERS = [
-    router_1.nsProvideRouter(exports.routes, { enableTracing: false }),
-];
+// import { RouterConfig } from "@angular/router";
+// import { nsProvideRouter } from "nativescript-angular/router";
+// import { GameComponent } from "./game/game.component";
+// import { HomeComponent } from "./home/home.component";
+// // import { AuthGuard } from "./auth.guard";
+// export const routes: RouterConfig = [
+//   // { path: "", component: HomeComponent },
+//   { path: "", component: GameComponent }
+// //   { path: "login", component: LoginComponent }
+// ];
+// export const APP_ROUTER_PROVIDERS = [
+//   nsProvideRouter(routes, { enableTracing: false }),
+// //   AuthGuard
+// ];
 //# sourceMappingURL=app.routes.js.map

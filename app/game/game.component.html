@@ -1,5 +1,8 @@
 <GridLayout columns='50, *' backgroundColor='lightgray'>
+
     <Label text='Label 1' col='0' backgroundColor='red'></Label>
-    <WebView id='myWebView' col='1' src='{{ url }}'></WebView>
-    <Button (tap)='menu()' text='¥' col='1' class='menu'></Button>
+    <WebView id='myWebView' #myWebView col='1' src='{{ url }}'></WebView>
+    <Button (tap)='buttonTap($event)' text='¥' col='1' class='menu'></Button>
+    <Button (tap)='buttonTap2($event)' text='abc' col='1' class='transfer'></Button>
+    <Image #myPhoto [src]="img1" col='0'></Image>
 </GridLayout>

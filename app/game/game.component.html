@@ -1,8 +1,79 @@
-<GridLayout columns='50, *' backgroundColor='lightgray'>
+<GridLayout columns="*" backgroundColor="lightgray" (tap)="close($event)">
+    <Image #screenshot [src]="img" visibility="collapse" col="0"></Image>
+    <WebView #myWebView col="0" [src]="url"></WebView>
+    <Button #button1 (tap)="menuButtonTap($event)" text="¥" col="0" class="menu"></Button>
 
-    <Label text='Label 1' col='0' backgroundColor='red'></Label>
-    <WebView id='myWebView' #myWebView col='1' src='{{ url }}'></WebView>
-    <Button (tap)='buttonTap($event)' text='¥' col='1' class='menu'></Button>
-    <Button (tap)='buttonTap2($event)' text='abc' col='1' class='transfer'></Button>
-    <Image #myPhoto [src]="img1" col='0'></Image>
+    <GridLayout #menuContainer columns="auto" rows="auto, auto, auto" [visibility]="menuVisibility ? 'visible' : 'collapsed'" horizontalAlignment="right" (tap)="doNothing($event)">
+        <GridLayout class="redText" row="0" columns="auto, auto" rows="auto, auto" horizontalAlignment="right">
+            <Button text="进" col="0" row="0" (tap)="transferIn($event)"></Button>
+            <Button text="出" col="0" row="1" (tap)="transferOut($event)"></Button>
+            <Button text="转账" (tap)="transferButtonTap($event)" col="1" rowSpan="2" verticalAlignment="top"></Button>
+        </GridLayout>
+        <GridLayout class="redText" row="1" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
+            <Button class="thick" text="主账户余额" col="0" row="0" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thin" text="¥49,999" col="1" row="0" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thick" text="存款" col="2" row="0" rowSpan="2" (tap)="saveButtonTap($event)" verticalAlignment="top"></Button>
+            <Button class="thick" text="微信支付" col="0" row="1" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thin" text="¥1000" col="1" row="1" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thick" text="银行转账" col="0" row="2" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thin" text="¥200,000" col="1" row="2" (tap)="saveButtonTap($event)"></Button>
+        </GridLayout>
+        <GridLayout class="whiteText" columns="auto, auto" rows="auto, auto" row="2" horizontalAlignment="right">
+            <GridLayout col="0" row="0" columns="auto, auto">
+                <Label text="主账户余额" col="0"></Label>
+                <Label text="¥9,725,000.00" col="1"></Label>
+            </GridLayout>
+            <StackLayout orientation="horizontal" col="0" row="1">
+                <Label text="实况电投" col="0" row="1"></Label>
+                <Label text="¥1,000,000" col="0" row="1"></Label>
+                <Label text="沙巴体育" col="0" row="1"></Label>
+                <Label text="¥1,000,000" col="0" row="1"></Label>
+                <Label text="金星馆" col="0" row="1"></Label>
+                <Label text="¥1,000,000" col="0" row="1"></Label>
+            </StackLayout>
+            <Label text="¥" col="1" rowSpan="2"></Label>
+        </GridLayout>
+    </GridLayout>
+
+    <GridLayout backgroundColor="green" columns="auto, auto" rows="auto, auto, auto, auto, auto, auto" [visibility]="offlineTopUpVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <Label text="线下充值" row="0" col="0"></Label>
+        <Label text="¥20 - ¥200,000" row="0" col="1"></Label>
+        <Label text="银行名称" row="1" col="0"></Label>
+        <TextField hint="招商银行" row="1" col="1"></TextField>
+        <TextField hint="充入金额" colSpan="2" row="2"></TextField>
+        <TextField hint="备注" colSpan="2" row="3"></TextField>
+        <Label text="手机短信通知" row="4" col="0"></Label>
+        <Label text="电子邮件通知" row="4" col="1"></Label>
+        <Button text="确定" row="5" colSpan="2"></Button>
+    </GridLayout>
+
+    <GridLayout backgroundColor="green" columns="auto" rows="auto, auto, auto" [visibility]="mainAccountVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <Label text="主账户余额" row="0" col="0"></Label>
+        <TextField hint="支付金额(¥)" row="1"></TextField>
+        <Button text="确定" row="2"></Button>
+    </GridLayout>
+
+    <GridLayout backgroundColor="green" columns="auto, auto" rows="auto, auto, auto, auto, auto, auto, auto, auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <Label text="进" row="0" col="0"></Label>
+        <Label text="点击户口转钱" row="0" col="1"></Label>
+        <Label text="实况电投" col="0" row="1"></Label>
+        <Label text="¥1,000,000" col="0" row="1"></Label>
+        <Label text="沙巴体育" col="1" row="1"></Label>
+        <Label text="¥1,000,000" col="1" row="2"></Label>
+        <Label text="金星馆" col="0" row="2"></Label>
+        <Label text="¥1,000,000" col="0" row="2"></Label>
+        <Label text="木星馆" col="1" row="2"></Label>
+        <Label text="¥1,000,000" col="1" row="2"></Label>
+        <Label text="水星馆" col="0" row="3"></Label>
+        <Label text="¥1,000,000" col="0" row="3"></Label>
+        <Label text="土星馆" col="1" row="3"></Label>
+        <Label text="¥1,000,000" col="1" row="3"></Label>
+        <Label text="Playtech" col="0" row="4"></Label>
+        <Label text="¥1,000,000" col="0" row="4"></Label>
+        <Label text="TTG" col="1" row="4"></Label>
+        <Label text="¥1,000,000" col="1" row="4"></Label>
+        <TextField hint="转账金额" row="5"></TextField>
+        <TextField hint="红利代码" row="6"></TextField>
+        <Button text="确定" row="7"></Button>
+    </GridLayout>
 </GridLayout>

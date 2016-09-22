@@ -17,15 +17,61 @@ export class GameComponent implements OnInit {
     constructor() {};
 
     private url = 'http://mobile3.gameassists.co.uk/MobileWebServices/casino/game/launch/12bet/ageOfDiscovery/en?casinoID=4107&lobbyURL=http://www.12bet.uk/en-gb/casino&bankingURL=&loginType=VanguardSessionToken&authToken=Flash_4760821572597542023&isRGI=true';
-    private isItemVisible = false;
-    private img1;
+    private img;
+    private menuVisibility = false;
+    private offlineTopUpVisibility = false;
+    private mainAccountVisibility = false;
+    private saveVisibility = true;
     @ViewChild("myWebView") webView;//: webViewModule.WebView;
-    @ViewChild("myPhoto") photo;
+    @ViewChild("screenshot") screenshot;
+    @ViewChild("button1") button;
     @ViewChild("menuContainer") menuContainer: ElementRef;
 
+    ngAfterViewChecked() {
+        // var self = this;
+        // var webViewImage;
+
+        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+        //     // alert('finished');
+        //     webViewImage = plugin.getImage(self.webView.nativeElement);
+        //     self.img = webViewImage;
+
+        //     console.dump(self.img);
+        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+        //     // console.dump(colors);
+        //     var rgb = colors.IosPalette.primaryColor;
+        //     var r = Math.floor(rgb._r);
+        //     var g = Math.floor(rgb._g);
+        //     var b = Math.floor(rgb._b);
+        //     // console.log(r + ',' + g + ',' + b);
+
+        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // })
+    }
+
     ngOnInit() {
+        // var self = this;
+        // var webViewImage;
+
+        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+        //     // alert('finished');
+        //     webViewImage = plugin.getImage(self.webView.nativeElement);
+        //     self.img = webViewImage;
+
+        //     console.dump(self.img);
+        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+        //     // console.dump(colors);
+        //     var rgb = colors.IosPalette.primaryColor;
+        //     var r = Math.floor(rgb._r);
+        //     var g = Math.floor(rgb._g);
+        //     var b = Math.floor(rgb._b);
+        //     // console.log(r + ',' + g + ',' + b);
+
+        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // })
+
         // var webViewImage = plugin.getImage(this.webView.nativeElement);
-        // this.img1 = webViewImage;
+        // this.img = webViewImage;
         //console.dump(this.webView);
         // this.webView = new webViewModule.WebView();
         // this.webView.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
@@ -50,7 +96,7 @@ export class GameComponent implements OnInit {
         //     opacity: 0,
         //     duration: 500
         // });
-        this.isItemVisible = !this.isItemVisible;
+        // this.isItemVisible = !this.isItemVisible;
     }
 
     transfer() {
@@ -75,16 +121,61 @@ export class GameComponent implements OnInit {
         });
     }
 
-    buttonTap2() {
-        // var colorThief = new ColorThief();
-        // console.dump(colorThief);
-        // var dominantColor = colorThief.getColor(this.photo, true, true);
+    menuButtonTap(args) {
+        // alert();
+        this.showMenu();
+
+        var webViewImage = plugin.getImage(this.webView.nativeElement);
+        this.img = webViewImage;
+        var colors = imageColorModule.ImageColors.getColorPalette(this.screenshot.nativeElement);
+        console.dump(colors);
+        var rgb = colors.IosPalette.primaryColor;
+        var r = Math.floor(rgb._r);
+        var g = Math.floor(rgb._g);
+        var b = Math.floor(rgb._b);
+        console.log(r + ',' + g + ',' + b);
+
+        this.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
     }
 
-    buttonTap(args) {
-        var webViewImage = plugin.getImage(this.webView.nativeElement);
-        this.img1 = webViewImage;
-        var colors = imageColorModule.ImageColors.getColorPalette(this.photo.nativeElement);
-        console.dump(colors);
+    showMenu() {
+        // let menuContainer = this.menuContainer.nativeElement;
+        let animations = [];
+
+        this.menuVisibility = !this.menuVisibility;
+        // Fade out the initial content over one half second
+        // menuContainer.animate({
+        //     opacity: 0,
+        //     duration: 500
+        // }).then(function() {
+        // // this.menuVisibility = true;
+        //     alert();
+        // })
     }
+
+    transferButtonTap() {
+        alert('transfer');
+    }
+
+    saveButtonTap() {
+
+    }
+
+    close() {
+        this.menuVisibility = false;
+    }
+
+    doNothing() {
+        this.menuVisibility = true;
+    }
+
+    transferIn() {
+
+    }
+
+    transferOut() {
+
+    }
+
+    
 }

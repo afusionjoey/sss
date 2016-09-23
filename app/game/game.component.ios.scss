@@ -38,6 +38,8 @@
 
 .redText {
     color: red;
+    padding: 20px;
+    background-color: white;
     Button {
         font-size: 13pt;
     }
@@ -45,4 +47,13 @@
 
 .whiteText {
     color: white;
+    padding: 20px;
+    background-color: red;
+    Label {
+        font-size: 13pt;
+    }
+}
+
+.closeBtn {
+    margin: -20px -20px 0 0;
 }

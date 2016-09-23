@@ -19,11 +19,12 @@ export class GameComponent implements OnInit {
     private url = 'http://mobile3.gameassists.co.uk/MobileWebServices/casino/game/launch/12bet/ageOfDiscovery/en?casinoID=4107&lobbyURL=http://www.12bet.uk/en-gb/casino&bankingURL=&loginType=VanguardSessionToken&authToken=Flash_4760821572597542023&isRGI=true';
     private img;
     private menuVisibility = false;
-    private transferVisibility = false;
+    private transferMenuVisibility = false;
     private offlineTopUpVisibility = false;
     private mainAccountVisibility = false;
     private saveVisibility = false;
     private saveMenuVisibility = false;
+    private menuButtonVisibility = true;
     @ViewChild("myWebView") webView;//: webViewModule.WebView;
     @ViewChild("screenshot") screenshot;
     @ViewChild("button1") button;
@@ -126,6 +127,7 @@ export class GameComponent implements OnInit {
     menuButtonTap(args) {
         // alert();
         this.showMenu();
+        // this.menuButtonVisibility = false;
 
         var webViewImage = plugin.getImage(this.webView.nativeElement);
         this.img = webViewImage;
@@ -156,31 +158,38 @@ export class GameComponent implements OnInit {
     }
 
     transferButtonTap() {
-        this.transferVisibility = !this.transferVisibility;
+        this.transferMenuVisibility = !this.transferMenuVisibility;
+        this.saveMenuVisibility = false;
     }
 
     transferIn() {
         this.saveVisibility = !this.saveVisibility;
+        this.menuVisibility = false;
     }
 
     transferOut() {
         this.saveVisibility = !this.saveVisibility;
-    }
-
-    mainAccountTap() {
-        this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     }
 
     saveButtonTap() {
         this.saveMenuVisibility = !this.saveMenuVisibility;
+        this.transferMenuVisibility = false;
+    }
+
+    mainAccountTap() {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     }
 
     weChatPayTap() {
         this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     }
 
     bankTransferTap() {
         this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     }
 
     doNothing() {
@@ -191,4 +200,15 @@ export class GameComponent implements OnInit {
         this.menuVisibility = false;
     }
 
+    closeMainAccount() {
+        this.mainAccountVisibility = false;
+    }
+
+    closeSave() {
+        this.saveVisibility = false;
+    }
+
+    exitGame() {
+        alert('exit');
+    }
 }

@@ -8,11 +8,12 @@ var GameComponent = (function () {
     function GameComponent() {
         this.url = 'http://mobile3.gameassists.co.uk/MobileWebServices/casino/game/launch/12bet/ageOfDiscovery/en?casinoID=4107&lobbyURL=http://www.12bet.uk/en-gb/casino&bankingURL=&loginType=VanguardSessionToken&authToken=Flash_4760821572597542023&isRGI=true';
         this.menuVisibility = false;
-        this.transferVisibility = false;
+        this.transferMenuVisibility = false;
         this.offlineTopUpVisibility = false;
         this.mainAccountVisibility = false;
         this.saveVisibility = false;
         this.saveMenuVisibility = false;
+        this.menuButtonVisibility = true;
     }
     ;
     GameComponent.prototype.ngAfterViewChecked = function () {
@@ -98,6 +99,7 @@ var GameComponent = (function () {
     GameComponent.prototype.menuButtonTap = function (args) {
         // alert();
         this.showMenu();
+        // this.menuButtonVisibility = false;
         var webViewImage = plugin.getImage(this.webView.nativeElement);
         this.img = webViewImage;
         var colors = imageColorModule.ImageColors.getColorPalette(this.screenshot.nativeElement);
@@ -123,31 +125,47 @@ var GameComponent = (function () {
         // })
     };
     GameComponent.prototype.transferButtonTap = function () {
-        this.transferVisibility = !this.transferVisibility;
+        this.transferMenuVisibility = !this.transferMenuVisibility;
+        this.saveMenuVisibility = false;
     };
     GameComponent.prototype.transferIn = function () {
         this.saveVisibility = !this.saveVisibility;
+        this.menuVisibility = false;
     };
     GameComponent.prototype.transferOut = function () {
         this.saveVisibility = !this.saveVisibility;
-    };
-    GameComponent.prototype.mainAccountTap = function () {
-        this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     };
     GameComponent.prototype.saveButtonTap = function () {
         this.saveMenuVisibility = !this.saveMenuVisibility;
+        this.transferMenuVisibility = false;
+    };
+    GameComponent.prototype.mainAccountTap = function () {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     };
     GameComponent.prototype.weChatPayTap = function () {
         this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     };
     GameComponent.prototype.bankTransferTap = function () {
         this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.menuVisibility = false;
     };
     GameComponent.prototype.doNothing = function () {
         this.menuVisibility = true;
     };
     GameComponent.prototype.close = function () {
         this.menuVisibility = false;
+    };
+    GameComponent.prototype.closeMainAccount = function () {
+        this.mainAccountVisibility = false;
+    };
+    GameComponent.prototype.closeSave = function () {
+        this.saveVisibility = false;
+    };
+    GameComponent.prototype.exitGame = function () {
+        alert('exit');
     };
     __decorate([
         core_1.ViewChild("myWebView"), 

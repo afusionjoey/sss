@@ -5,18 +5,18 @@
 
     <GridLayout #menuContainer columns="auto" rows="auto, auto, auto" [visibility]="menuVisibility ? 'visible' : 'collapsed'" horizontalAlignment="right" (tap)="doNothing($event)">
         <GridLayout class="redText" row="0" columns="auto, auto" rows="auto, auto" horizontalAlignment="right">
-            <Button text="进" col="0" row="0" (tap)="transferIn($event)"></Button>
-            <Button text="出" col="0" row="1" (tap)="transferOut($event)"></Button>
+            <Button [visibility]="transferVisibility ? 'visible' : 'collapsed'" text="进" col="0" row="0" (tap)="transferIn($event)"></Button>
+            <Button [visibility]="transferVisibility ? 'visible' : 'collapsed'" text="出" col="0" row="1" (tap)="transferOut($event)"></Button>
             <Button text="转账" (tap)="transferButtonTap($event)" col="1" rowSpan="2" verticalAlignment="top"></Button>
         </GridLayout>
         <GridLayout class="redText" row="1" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
-            <Button class="thick" text="主账户余额" col="0" row="0" (tap)="saveButtonTap($event)"></Button>
-            <Button class="thin" text="¥49,999" col="1" row="0" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
+            <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>
             <Button class="thick" text="存款" col="2" row="0" rowSpan="2" (tap)="saveButtonTap($event)" verticalAlignment="top"></Button>
-            <Button class="thick" text="微信支付" col="0" row="1" (tap)="saveButtonTap($event)"></Button>
-            <Button class="thin" text="¥1000" col="1" row="1" (tap)="saveButtonTap($event)"></Button>
-            <Button class="thick" text="银行转账" col="0" row="2" (tap)="saveButtonTap($event)"></Button>
-            <Button class="thin" text="¥200,000" col="1" row="2" (tap)="saveButtonTap($event)"></Button>
+            <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="微信支付" col="0" row="1" (tap)="weChatPayTap($event)"></Button>
+            <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥1000" col="1" row="1" (tap)="weChatPayTap($event)"></Button>
+            <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="银行转账" col="0" row="2" (tap)="bankTransferTap($event)"></Button>
+            <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥200,000" col="1" row="2" (tap)="bankTransferTap($event)"></Button>
         </GridLayout>
         <GridLayout class="whiteText" columns="auto, auto" rows="auto, auto" row="2" horizontalAlignment="right">
             <GridLayout col="0" row="0" columns="auto, auto">

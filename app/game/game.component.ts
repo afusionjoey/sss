@@ -19,9 +19,11 @@ export class GameComponent implements OnInit {
     private url = 'http://mobile3.gameassists.co.uk/MobileWebServices/casino/game/launch/12bet/ageOfDiscovery/en?casinoID=4107&lobbyURL=http://www.12bet.uk/en-gb/casino&bankingURL=&loginType=VanguardSessionToken&authToken=Flash_4760821572597542023&isRGI=true';
     private img;
     private menuVisibility = false;
+    private transferVisibility = false;
     private offlineTopUpVisibility = false;
     private mainAccountVisibility = false;
-    private saveVisibility = true;
+    private saveVisibility = false;
+    private saveMenuVisibility = false;
     @ViewChild("myWebView") webView;//: webViewModule.WebView;
     @ViewChild("screenshot") screenshot;
     @ViewChild("button1") button;
@@ -154,28 +156,39 @@ export class GameComponent implements OnInit {
     }
 
     transferButtonTap() {
-        alert('transfer');
+        this.transferVisibility = !this.transferVisibility;
+    }
+
+    transferIn() {
+        this.saveVisibility = !this.saveVisibility;
+    }
+
+    transferOut() {
+        this.saveVisibility = !this.saveVisibility;
+    }
+
+    mainAccountTap() {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
     }
 
     saveButtonTap() {
-
+        this.saveMenuVisibility = !this.saveMenuVisibility;
     }
 
-    close() {
-        this.menuVisibility = false;
+    weChatPayTap() {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
+    }
+
+    bankTransferTap() {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
     }
 
     doNothing() {
         this.menuVisibility = true;
     }
 
-    transferIn() {
-
+    close() {
+        this.menuVisibility = false;
     }
 
-    transferOut() {
-
-    }
-
-    
 }

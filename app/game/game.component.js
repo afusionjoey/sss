@@ -8,9 +8,11 @@ var GameComponent = (function () {
     function GameComponent() {
         this.url = 'http://mobile3.gameassists.co.uk/MobileWebServices/casino/game/launch/12bet/ageOfDiscovery/en?casinoID=4107&lobbyURL=http://www.12bet.uk/en-gb/casino&bankingURL=&loginType=VanguardSessionToken&authToken=Flash_4760821572597542023&isRGI=true';
         this.menuVisibility = false;
+        this.transferVisibility = false;
         this.offlineTopUpVisibility = false;
         this.mainAccountVisibility = false;
-        this.saveVisibility = true;
+        this.saveVisibility = false;
+        this.saveMenuVisibility = false;
     }
     ;
     GameComponent.prototype.ngAfterViewChecked = function () {
@@ -121,19 +123,31 @@ var GameComponent = (function () {
         // })
     };
     GameComponent.prototype.transferButtonTap = function () {
-        alert('transfer');
+        this.transferVisibility = !this.transferVisibility;
+    };
+    GameComponent.prototype.transferIn = function () {
+        this.saveVisibility = !this.saveVisibility;
+    };
+    GameComponent.prototype.transferOut = function () {
+        this.saveVisibility = !this.saveVisibility;
+    };
+    GameComponent.prototype.mainAccountTap = function () {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
     };
     GameComponent.prototype.saveButtonTap = function () {
+        this.saveMenuVisibility = !this.saveMenuVisibility;
     };
-    GameComponent.prototype.close = function () {
-        this.menuVisibility = false;
+    GameComponent.prototype.weChatPayTap = function () {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
+    };
+    GameComponent.prototype.bankTransferTap = function () {
+        this.mainAccountVisibility = !this.mainAccountVisibility;
     };
     GameComponent.prototype.doNothing = function () {
         this.menuVisibility = true;
     };
-    GameComponent.prototype.transferIn = function () {
-    };
-    GameComponent.prototype.transferOut = function () {
+    GameComponent.prototype.close = function () {
+        this.menuVisibility = false;
     };
     __decorate([
         core_1.ViewChild("myWebView"), 

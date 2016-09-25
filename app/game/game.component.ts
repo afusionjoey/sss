@@ -25,10 +25,18 @@ export class GameComponent implements OnInit {
     private saveVisibility = false;
     private saveMenuVisibility = false;
     private menuButtonVisibility = true;
+    private saveContainerToggle = false;
+    private isFilled1 = false;
+    private isFilled2 = false;
     @ViewChild("myWebView") webView;//: webViewModule.WebView;
     @ViewChild("screenshot") screenshot;
     @ViewChild("button1") button;
-    @ViewChild("menuContainer") menuContainer: ElementRef;
+    @ViewChild("menuContainer") menuContainer;
+    @ViewChild("saveContainer") saveContainer;
+    @ViewChild("transferContainer") transferContainer;
+    @ViewChild("transferAmt") transferAmt;
+    @ViewChild("transferSubmitBtn") transferSubmitBtn;
+    @ViewChild("mainAccountSubmitBtn") mainAccountSubmitBtn;
 
     ngAfterViewChecked() {
         var self = this;
@@ -129,17 +137,17 @@ export class GameComponent implements OnInit {
         this.showMenu();
         // this.menuButtonVisibility = false;
 
-        var webViewImage = plugin.getImage(this.webView.nativeElement);
-        this.img = webViewImage;
-        var colors = imageColorModule.ImageColors.getColorPalette(this.screenshot.nativeElement);
-        console.dump(colors);
-        var rgb = colors.IosPalette.primaryColor;
-        var r = Math.floor(rgb._r);
-        var g = Math.floor(rgb._g);
-        var b = Math.floor(rgb._b);
-        console.log(r + ',' + g + ',' + b);
+        // var webViewImage = plugin.getImage(this.webView.nativeElement);
+        // this.img = webViewImage;
+        // var colors = imageColorModule.ImageColors.getColorPalette(this.screenshot.nativeElement);
+        // console.dump(colors);
+        // var rgb = colors.IosPalette.primaryColor;
+        // var r = Math.floor(rgb._r);
+        // var g = Math.floor(rgb._g);
+        // var b = Math.floor(rgb._b);
+        // console.log(r + ',' + g + ',' + b);
 
-        this.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // this.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
     }
 
     showMenu() {
@@ -160,6 +168,8 @@ export class GameComponent implements OnInit {
     transferButtonTap() {
         this.transferMenuVisibility = !this.transferMenuVisibility;
         this.saveMenuVisibility = false;
+        // this.saveContainerToggle = !this.saveContainerToggle;
+        // console.dump(this.transferContainer.nativeElement);
     }
 
     transferIn() {
@@ -210,5 +220,51 @@ export class GameComponent implements OnInit {
 
     exitGame() {
         alert('exit');
+    }
+
+    textChange1(field) {
+        if (field != '') {
+            this.isFilled1 = true;
+            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = 'red';
+        } else {
+            this.isFilled1 = false;
+            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = 'green';
+        }
+    }
+
+    textChange2(field1, field2) {
+        if (field1 != '' && field2 != '') {
+            this.isFilled2 = true;
+            this.transferSubmitBtn.nativeElement.style.backgroundColor = 'red';
+        } else {
+            this.isFilled2 = false;
+            this.transferSubmitBtn.nativeElement.style.backgroundColor = 'green';
+        }
+    }
+
+    selection() {
+
+    }
+
+    updateMenuBtnColor() {
+         // var self = this;
+        // var webViewImage;
+
+        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+        //     // alert('finished');
+        //     webViewImage = plugin.getImage(self.webView.nativeElement);
+        //     self.img = webViewImage;
+
+        //     console.dump(self.img);
+        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+        //     // console.dump(colors);
+        //     var rgb = colors.IosPalette.primaryColor;
+        //     var r = Math.floor(rgb._r);
+        //     var g = Math.floor(rgb._g);
+        //     var b = Math.floor(rgb._b);
+        //     // console.log(r + ',' + g + ',' + b);
+
+        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // })
     }
 }

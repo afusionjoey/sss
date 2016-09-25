@@ -15,6 +15,9 @@ var GameComponent = (function () {
         this.saveVisibility = false;
         this.saveMenuVisibility = false;
         this.menuButtonVisibility = true;
+        this.saveContainerToggle = false;
+        this.isFilled1 = false;
+        this.isFilled2 = false;
     }
     ;
     GameComponent.prototype.ngAfterViewChecked = function () {
@@ -101,16 +104,16 @@ var GameComponent = (function () {
         // alert();
         this.showMenu();
         // this.menuButtonVisibility = false;
-        var webViewImage = plugin.getImage(this.webView.nativeElement);
-        this.img = webViewImage;
-        var colors = imageColorModule.ImageColors.getColorPalette(this.screenshot.nativeElement);
-        console.dump(colors);
-        var rgb = colors.IosPalette.primaryColor;
-        var r = Math.floor(rgb._r);
-        var g = Math.floor(rgb._g);
-        var b = Math.floor(rgb._b);
-        console.log(r + ',' + g + ',' + b);
-        this.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // var webViewImage = plugin.getImage(this.webView.nativeElement);
+        // this.img = webViewImage;
+        // var colors = imageColorModule.ImageColors.getColorPalette(this.screenshot.nativeElement);
+        // console.dump(colors);
+        // var rgb = colors.IosPalette.primaryColor;
+        // var r = Math.floor(rgb._r);
+        // var g = Math.floor(rgb._g);
+        // var b = Math.floor(rgb._b);
+        // console.log(r + ',' + g + ',' + b);
+        // this.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
     };
     GameComponent.prototype.showMenu = function () {
         // let menuContainer = this.menuContainer.nativeElement;
@@ -128,6 +131,8 @@ var GameComponent = (function () {
     GameComponent.prototype.transferButtonTap = function () {
         this.transferMenuVisibility = !this.transferMenuVisibility;
         this.saveMenuVisibility = false;
+        // this.saveContainerToggle = !this.saveContainerToggle;
+        // console.dump(this.transferContainer.nativeElement);
     };
     GameComponent.prototype.transferIn = function () {
         this.saveVisibility = !this.saveVisibility;
@@ -168,6 +173,46 @@ var GameComponent = (function () {
     GameComponent.prototype.exitGame = function () {
         alert('exit');
     };
+    GameComponent.prototype.textChange1 = function (field) {
+        if (field != '') {
+            this.isFilled1 = true;
+            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = 'red';
+        }
+        else {
+            this.isFilled1 = false;
+            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = 'green';
+        }
+    };
+    GameComponent.prototype.textChange2 = function (field1, field2) {
+        if (field1 != '' && field2 != '') {
+            this.isFilled2 = true;
+            this.transferSubmitBtn.nativeElement.style.backgroundColor = 'red';
+        }
+        else {
+            this.isFilled2 = false;
+            this.transferSubmitBtn.nativeElement.style.backgroundColor = 'green';
+        }
+    };
+    GameComponent.prototype.selection = function () {
+    };
+    GameComponent.prototype.updateMenuBtnColor = function () {
+        // var self = this;
+        // var webViewImage;
+        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+        //     // alert('finished');
+        //     webViewImage = plugin.getImage(self.webView.nativeElement);
+        //     self.img = webViewImage;
+        //     console.dump(self.img);
+        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+        //     // console.dump(colors);
+        //     var rgb = colors.IosPalette.primaryColor;
+        //     var r = Math.floor(rgb._r);
+        //     var g = Math.floor(rgb._g);
+        //     var b = Math.floor(rgb._b);
+        //     // console.log(r + ',' + g + ',' + b);
+        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // })
+    };
     __decorate([
         core_1.ViewChild("myWebView"), 
         __metadata('design:type', Object)
@@ -183,8 +228,28 @@ var GameComponent = (function () {
     ], GameComponent.prototype, "button", void 0);
     __decorate([
         core_1.ViewChild("menuContainer"), 
-        __metadata('design:type', core_1.ElementRef)
+        __metadata('design:type', Object)
     ], GameComponent.prototype, "menuContainer", void 0);
+    __decorate([
+        core_1.ViewChild("saveContainer"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "saveContainer", void 0);
+    __decorate([
+        core_1.ViewChild("transferContainer"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "transferContainer", void 0);
+    __decorate([
+        core_1.ViewChild("transferAmt"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "transferAmt", void 0);
+    __decorate([
+        core_1.ViewChild("transferSubmitBtn"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "transferSubmitBtn", void 0);
+    __decorate([
+        core_1.ViewChild("mainAccountSubmitBtn"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "mainAccountSubmitBtn", void 0);
     GameComponent = __decorate([
         core_1.Component({
             selector: "game",

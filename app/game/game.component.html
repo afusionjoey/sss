@@ -72,47 +72,50 @@
         <Button class="submitBtn" #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定" row="2"></Button>
     </GridLayout>
 
-    <GridLayout class="redText" columns="auto, auto" rows="auto, auto, auto, auto, auto, auto, auto, auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <Image (tap)="closeSave()" col="1" class="closeBtn" src="res://button_close" horizontalAlignment="right"></Image>
-        <Label text="进" row="0" col="0"></Label>
-        <Label text="点击户口转钱" row="0" col="1"></Label>
-        <Label text="点击户口转钱" class="message" horizontalAlignment="center" verticalAlignment="middle" colSpan="2"></Label>
-        <StackLayout (onTap)="selection($event)" col="0" row="1">
-            <Label text="实况电投"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="1" row="1">
-            <Label text="沙巴体育"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="0" row="2">
-            <Label text="金星馆"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="1" row="2">
-            <Label text="木星馆"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="0" row="3">
-            <Label text="水星馆"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="1" row="3">
-            <Label text="土星馆"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="0" row="4">
-            <Label text="Playtech"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
-        <StackLayout (onTap)="selection($event)" col="1" row="4">
-            <Label text="TTG"></Label>
-            <Label text="¥1,000,000"></Label>
-        </StackLayout>
+    <GridLayout class="redText" columns="auto" rows="auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <GridLayout columns="auto, auto" rows="auto, auto, auto, auto, auto, auto, auto, auto">
+            <Label text="进" row="0" col="0"></Label>
+            <Label text="点击户口转钱" row="0" col="1"></Label>
+            <StackLayout (onTap)="selection($event)" col="0" row="1">
+                <Label text="实况电投"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="1" row="1">
+                <Label text="沙巴体育"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="0" row="2">
+                <Label text="金星馆"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="1" row="2">
+                <Label text="木星馆"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="0" row="3">
+                <Label text="水星馆"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="1" row="3">
+                <Label text="土星馆"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="0" row="4">
+                <Label text="Playtech"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+            <StackLayout (onTap)="selection($event)" col="1" row="4">
+                <Label text="TTG"></Label>
+                <Label text="¥1,000,000"></Label>
+            </StackLayout>
+        </GridLayout>
+        <Image (tap)="closeSave()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top"></Image>
+        <Label text="点击户口转钱" class="message" horizontalAlignment="center" verticalAlignment="middle"></Label>
     </GridLayout>
 
-    <GridLayout class="redText" columns="auto, auto" [visibility]="subSaveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <StackLayout (onTap)="selection($event)" col="0" row="0">
+    <GridLayout class="redText" columns="auto, auto" rows="auto, auto" [visibility]="subSaveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <Image (tap)="closeSubSaveAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right" colSpan="2"></Image>
+        <StackLayout class="selected" (onTap)="selection($event)" col="0" row="0">
             <Label text="Playtech"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>

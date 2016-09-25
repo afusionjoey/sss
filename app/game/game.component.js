@@ -176,21 +176,21 @@ var GameComponent = (function () {
     GameComponent.prototype.textChange1 = function (field) {
         if (field != '') {
             this.isFilled1 = true;
-            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = 'red';
+            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = '#CD1F1F';
         }
         else {
             this.isFilled1 = false;
-            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = 'green';
+            this.mainAccountSubmitBtn.nativeElement.style.backgroundColor = '#979797';
         }
     };
     GameComponent.prototype.textChange2 = function (field1, field2) {
         if (field1 != '' && field2 != '') {
             this.isFilled2 = true;
-            this.transferSubmitBtn.nativeElement.style.backgroundColor = 'red';
+            this.transferSubmitBtn.nativeElement.style.backgroundColor = '#CD1F1F';
         }
         else {
             this.isFilled2 = false;
-            this.transferSubmitBtn.nativeElement.style.backgroundColor = 'green';
+            this.transferSubmitBtn.nativeElement.style.backgroundColor = '#979797';
         }
     };
     GameComponent.prototype.selection = function () {

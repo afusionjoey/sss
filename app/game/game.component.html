@@ -10,7 +10,7 @@
             <Button class="thick" [visibility]="transferMenuVisibility ? 'visible' : 'collapsed'" text="出" col="0" row="1" (tap)="transferOut($event)"></Button>
             <Button class="thick" text="转账" (tap)="transferButtonTap($event)" col="1" rowSpan="2" verticalAlignment="top"></Button>
         </GridLayout>
-        <GridLayout translateY="50" #saveContainer id="saveContainer" [visibility]="saveContainerToggle ? 'collapsed' : 'visible'" class="redText" row="1" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
+        <GridLayout #saveContainer id="saveContainer" [visibility]="saveContainerToggle ? 'collapsed' : 'visible'" class="redText" row="1" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
             <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
             <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>
             <Button class="thick" text="存款" col="2" row="0" rowSpan="2" (tap)="saveButtonTap($event)" verticalAlignment="top"></Button>
@@ -69,7 +69,7 @@
         <Image (tap)="closeMainAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right"></Image>
         <Label text="主账户余额" row="0" col="0"></Label>
         <TextField #payAmt (textChange)="textChange1(payAmt.text)" hint="支付金额(¥)" row="1"></TextField>
-        <Button #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定" row="2"></Button>
+        <Button class="submitBtn" #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定" row="2"></Button>
     </GridLayout>
 
     <GridLayout class="redText" columns="auto, auto" rows="auto, auto, auto, auto, auto, auto, auto, auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
@@ -111,6 +111,6 @@
 
         <TextField #transferAmt (textChange)="textChange2(transferAmt.text, passcode.text)" hint="转账金额" row="5" colSpan="2"></TextField>
         <TextField #passcode (textChange)="textChange2(transferAmt.text, passcode.text)" hint="红利代码" row="6" colSpan="2"></TextField>
-        <Button #transferSubmitBtn [isEnabled]="isFilled2" text="确定" row="7" colSpan="2"></Button>
+        <Button class="submitBtn" #transferSubmitBtn [isEnabled]="isFilled2" text="确定" row="7" colSpan="2"></Button>
     </GridLayout>
 </GridLayout>

@@ -31,25 +31,25 @@ export class GameComponent implements OnInit {
     @ViewChild("menuContainer") menuContainer: ElementRef;
 
     ngAfterViewChecked() {
-        // var self = this;
-        // var webViewImage;
+        var self = this;
+        var webViewImage;
 
-        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
-        //     // alert('finished');
-        //     webViewImage = plugin.getImage(self.webView.nativeElement);
-        //     self.img = webViewImage;
+        this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+            // alert('finished');
+            webViewImage = plugin.getImage(self.webView.nativeElement);
+            self.img = webViewImage;
 
-        //     console.dump(self.img);
-        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
-        //     // console.dump(colors);
-        //     var rgb = colors.IosPalette.primaryColor;
-        //     var r = Math.floor(rgb._r);
-        //     var g = Math.floor(rgb._g);
-        //     var b = Math.floor(rgb._b);
-        //     // console.log(r + ',' + g + ',' + b);
+            console.dump(self.img);
+            var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+            // console.dump(colors);
+            var rgb = colors.IosPalette.primaryColor;
+            var r = Math.floor(rgb._r);
+            var g = Math.floor(rgb._g);
+            var b = Math.floor(rgb._b);
+            // console.log(r + ',' + g + ',' + b);
 
-        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
-        // })
+            self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        })
     }
 
     ngOnInit() {

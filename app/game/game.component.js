@@ -1,5 +1,6 @@
 "use strict";
 var core_1 = require("@angular/core");
+var webViewModule = require("ui/web-view");
 var dialogs = require("ui/dialogs");
 var plugin = require("nativescript-screenshot");
 var imageColorModule = require('nativescript-image-colors/nativescript-image-colors');
@@ -17,22 +18,22 @@ var GameComponent = (function () {
     }
     ;
     GameComponent.prototype.ngAfterViewChecked = function () {
-        // var self = this;
-        // var webViewImage;
-        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
-        //     // alert('finished');
-        //     webViewImage = plugin.getImage(self.webView.nativeElement);
-        //     self.img = webViewImage;
-        //     console.dump(self.img);
-        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
-        //     // console.dump(colors);
-        //     var rgb = colors.IosPalette.primaryColor;
-        //     var r = Math.floor(rgb._r);
-        //     var g = Math.floor(rgb._g);
-        //     var b = Math.floor(rgb._b);
-        //     // console.log(r + ',' + g + ',' + b);
-        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
-        // })
+        var self = this;
+        var webViewImage;
+        this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args) {
+            // alert('finished');
+            webViewImage = plugin.getImage(self.webView.nativeElement);
+            self.img = webViewImage;
+            console.dump(self.img);
+            var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+            // console.dump(colors);
+            var rgb = colors.IosPalette.primaryColor;
+            var r = Math.floor(rgb._r);
+            var g = Math.floor(rgb._g);
+            var b = Math.floor(rgb._b);
+            // console.log(r + ',' + g + ',' + b);
+            self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        });
     };
     GameComponent.prototype.ngOnInit = function () {
         // var self = this;

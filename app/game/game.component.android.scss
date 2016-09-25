@@ -1,6 +1,7 @@
 .menu {
     border-radius: 50;
-    // background-color: blue;
+    // background-color: #C60000;
+    opacity: 0.6;
     color: white;
     width: 100px;
     height: 100px;
@@ -56,4 +57,20 @@
 
 .closeBtn {
     margin: -20px -20px 0 0;
+}
+
+.autoWH {
+    width: auto;
+    height: auto;
+}
+
+.submitBtn {
+    color: white;
+    background-color: #979797;
+    width: 100px;
+}
+
+.message {
+    color: white;
+    background-color: #4C5A6B;
 }

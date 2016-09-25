@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
     private offlineTopUpVisibility = false;
     private mainAccountVisibility = false;
     private saveVisibility = false;
+    private subSaveVisibility = false;
     private saveMenuVisibility = false;
     private menuButtonVisibility = true;
     private saveContainerToggle = false;
@@ -243,7 +244,8 @@ export class GameComponent implements OnInit {
     }
 
     selection() {
-
+        this.subSaveVisibility = true;
+        this.saveVisibility = false;
     }
 
     updateMenuBtnColor() {

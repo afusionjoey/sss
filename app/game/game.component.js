@@ -13,6 +13,7 @@ var GameComponent = (function () {
         this.offlineTopUpVisibility = false;
         this.mainAccountVisibility = false;
         this.saveVisibility = false;
+        this.subSaveVisibility = false;
         this.saveMenuVisibility = false;
         this.menuButtonVisibility = true;
         this.saveContainerToggle = false;
@@ -194,6 +195,8 @@ var GameComponent = (function () {
         }
     };
     GameComponent.prototype.selection = function () {
+        this.subSaveVisibility = true;
+        this.saveVisibility = false;
     };
     GameComponent.prototype.updateMenuBtnColor = function () {
         // var self = this;

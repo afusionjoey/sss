@@ -76,41 +76,54 @@
         <Image (tap)="closeSave()" col="1" class="closeBtn" src="res://button_close" horizontalAlignment="right"></Image>
         <Label text="进" row="0" col="0"></Label>
         <Label text="点击户口转钱" row="0" col="1"></Label>
-        <StackLayout (onTap)="selection()" col="0" row="1">
+        <Label text="点击户口转钱" class="message" horizontalAlignment="center" verticalAlignment="middle" colSpan="2"></Label>
+        <StackLayout (onTap)="selection($event)" col="0" row="1">
             <Label text="实况电投"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="1" row="1">
+        <StackLayout (onTap)="selection($event)" col="1" row="1">
             <Label text="沙巴体育"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="0" row="2">
+        <StackLayout (onTap)="selection($event)" col="0" row="2">
             <Label text="金星馆"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="1" row="2">
+        <StackLayout (onTap)="selection($event)" col="1" row="2">
             <Label text="木星馆"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="0" row="3">
+        <StackLayout (onTap)="selection($event)" col="0" row="3">
             <Label text="水星馆"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="1" row="3">
+        <StackLayout (onTap)="selection($event)" col="1" row="3">
             <Label text="土星馆"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="0" row="4">
+        <StackLayout (onTap)="selection($event)" col="0" row="4">
             <Label text="Playtech"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
-        <StackLayout (onTap)="selection()" col="1" row="4">
+        <StackLayout (onTap)="selection($event)" col="1" row="4">
             <Label text="TTG"></Label>
             <Label text="¥1,000,000"></Label>
         </StackLayout>
+    </GridLayout>
 
-        <TextField #transferAmt (textChange)="textChange2(transferAmt.text, passcode.text)" hint="转账金额" row="5" colSpan="2"></TextField>
-        <TextField #passcode (textChange)="textChange2(transferAmt.text, passcode.text)" hint="红利代码" row="6" colSpan="2"></TextField>
-        <Button class="submitBtn" #transferSubmitBtn [isEnabled]="isFilled2" text="确定" row="7" colSpan="2"></Button>
+    <GridLayout class="redText" columns="auto, auto" [visibility]="subSaveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <StackLayout (onTap)="selection($event)" col="0" row="0">
+            <Label text="Playtech"></Label>
+            <Label text="¥1,000,000"></Label>
+        </StackLayout>
+        <StackLayout (onTap)="selection($event)" col="1" row="0">
+            <Label text="TTG"></Label>
+            <Label text="¥1,000,000"></Label>
+        </StackLayout>
+        <StackLayout row="1" colSpan="2">
+            <TextField #transferAmt (textChange)="textChange2(transferAmt.text, passcode.text)" hint="转账金额" colSpan="2"></TextField>
+            <TextField #passcode (textChange)="textChange2(transferAmt.text, passcode.text)" hint="红利代码" colSpan="2"></TextField>
+            <Button class="submitBtn" #transferSubmitBtn [isEnabled]="isFilled2" text="确定" colSpan="2"></Button>
+        </StackLayout>
     </GridLayout>
 </GridLayout>

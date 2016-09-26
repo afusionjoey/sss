@@ -66,10 +66,15 @@
     </GridLayout>
 
     <GridLayout id="mainAccountContainer" class="mainAccountContainer redText whiteBG" columns="auto" rows="auto, auto, auto" [visibility]="mainAccountVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <Image (tap)="closeMainAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right"></Image>
-        <Label text="主账户余额" row="0" col="0"></Label>
-        <TextField #payAmt (textChange)="textChange1(payAmt.text)" hint="支付金额(¥)" row="1"></TextField>
-        <Button class="submitBtn" #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定" row="2"></Button>
+        <StackLayout orientation="horizontal" row="0" col="0">
+            <Label class="divider" text="主账户余额"></Label>
+            <Label class="description" text="¥50 -"></Label>
+        </StackLayout>
+        <TextField class="mainAccountForm" #payAmt (textChange)="textChange1(payAmt.text)" hint="支付金额(¥)" row="1"></TextField>
+        <Image (tap)="closeMainAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top"></Image>
+        <StackLayout verticalAlignment="bottom" horizontalAlignment="center" row="2">
+            <Button class="submitBtn" #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定" row="2"></Button>
+        </StackLayout>
     </GridLayout>
 
     <GridLayout class="redText whiteBG transferContainer" columns="auto" rows="auto, auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">

@@ -1,11 +1,10 @@
 .menuBtn {
-    border-radius: 35;
-    background-color: #C60000;
-    opacity: 0.9;
+    border-radius: 44;
+    background-color: rgba(198, 0, 0, 0.6);
     color: white;
-    width: 70px;
-    height: 70px;
-    margin-right: -25px;
+    width: 88px;
+    height: 88px;
+    margin-right: -40px;
     text-align: left;
     padding: 20px;
     horizontal-align: right;
@@ -13,7 +12,8 @@
 
 .menu {
     padding: 0 10px 0 10px;
-    margin: 0 0 5px 0;
+    margin: 0;
+    border-bottom: 1px solid black;
 }
 
 .transfer, .money, .save {
@@ -41,7 +41,7 @@
 }
 
 .thick {
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .redText {
@@ -61,8 +61,6 @@
 .divider {
     margin-right: 20px;
 }
-
-
 
 .whiteText {
     color: white;
@@ -110,26 +108,41 @@
 }
 
 .optionsBar {
-    padding: 10px;
-    background-color: #C60000;
-    opacity: 0.6;
+    padding: 3px;
+    background-color: rgba(198, 0, 0, 0.6);
 
     .optionsBarTop {
         margin-bottom: 20px;
+
+        .cent {
+            font-size: 13pt;
+            vertical-align: bottom;
+        }
+
+        .yuan {
+            font-size: 24pt;
+            vertical-align: bottom;
+        }
+    }
+
+    .optionsBarBottom {
+        width: 340px;
+        overflow: scroll;
+        // overflow-style: move;
     }
 
     .description {
-        font-size: 12pt;
+        font-size: 13pt;
+        vertical-align: bottom;
     }
 
     Label {
         color: white;
-        opacity: 1;
         text-align: left;
     }
 
     .value {
-        font-size: 18pt;
+        font-size: 24pt;
     }
 
     .icon {

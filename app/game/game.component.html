@@ -10,6 +10,7 @@
             <Button class="thick" [visibility]="transferMenuVisibility ? 'visible' : 'collapsed'" text="出" col="0" row="1" (tap)="transferOut($event)"></Button>
             <Button class="thick" text="转账" (tap)="transferButtonTap($event)" col="1" rowSpan="2" verticalAlignment="top"></Button>
         </GridLayout>
+
         <GridLayout #saveContainer id="saveContainer" [visibility]="saveContainerToggle ? 'collapsed' : 'visible'" class="menu redText whiteBG" row="1" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
             <Button horizontalAlignment="left" class="thick divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
             <Button horizontalAlignment="right" class="thin divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>
@@ -19,29 +20,34 @@
             <Button horizontalAlignment="left" class="thick divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="银行转账" col="0" row="2" (tap)="bankTransferTap($event)"></Button>
             <Button horizontalAlignment="right" class="thin divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥200,000" col="1" row="2" (tap)="bankTransferTap($event)"></Button>
         </GridLayout>
+
         <GridLayout class="optionsBar" columns="auto, auto" row="2" horizontalAlignment="right">
             <StackLayout col="0">
-                <GridLayout class="optionsBarTop" columns="auto, auto">
-                    <Label class="thin divider description" text="主账户余额" col="0"></Label>
-                    <Label class="thick value" text="¥9,725,000.00" col="1"></Label>
-                </GridLayout>
-                <StackLayout orientation="horizontal">
-                    <StackLayout class="autoWH divider">
-                        <Label class="thin description" text="实况电投" horizontalAlignment="left"></Label>
-                        <Label class="thick value" text="¥1,000,000" horizontalAlignment="left"></Label>
-                    </StackLayout>
-                    <StackLayout class="autoWH divider">
-                        <Label class="thin description" text="沙巴体育" horizontalAlignment="left"></Label>
-                        <Label class="thick value" text="¥1,000,000" horizontalAlignment="left"></Label>
-                    </StackLayout>
-                    <StackLayout class="autoWH divider">
-                        <Label class="thin description" text="金星馆" horizontalAlignment="left"></Label>
-                        <Label class="thick value" text="¥1,000,000" horizontalAlignment="left"></Label>
-                    </StackLayout>
+                <StackLayout orientation="horizontal" class="optionsBarTop" horizontalAlignment="left">
+                    <Label class="thin divider description" text="主账户余额"></Label>
+                    <Label class="thick yuan" text="¥9,725,000"></Label>
+                    <Label class="cent" text=".00"></Label>
                 </StackLayout>
+                <ScrollView orientation="horizontal" class="optionsBarBottom">
+                    <StackLayout orientation="horizontal">
+                        <StackLayout class="autoWH divider">
+                            <Label class="thin description" text="实况电投" horizontalAlignment="left"></Label>
+                            <Label class="thick value" text="¥1,000,000" horizontalAlignment="left"></Label>
+                        </StackLayout>
+                        <StackLayout class="autoWH divider">
+                            <Label class="thin description" text="沙巴体育" horizontalAlignment="left"></Label>
+                            <Label class="thick value" text="¥1,000,000" horizontalAlignment="left"></Label>
+                        </StackLayout>
+                        <StackLayout class="autoWH divider">
+                            <Label class="thin description" text="金星馆" horizontalAlignment="left"></Label>
+                            <Label class="thick value" text="¥1,000,000" horizontalAlignment="left"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
             <Label class="thick icon" text="¥" col="1"></Label>
         </GridLayout>
+
         <GridLayout #saveContainer2 id="saveContainer2" [visibility]="saveContainerToggle ? 'visible' : 'collapsed'" class="redText whiteBG" row="3" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
             <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
             <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>

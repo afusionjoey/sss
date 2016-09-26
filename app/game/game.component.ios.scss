@@ -1,7 +1,7 @@
 .menuBtn {
     border-radius: 35;
     background-color: #C60000;
-    opacity: 0.6;
+    opacity: 0.9;
     color: white;
     width: 70px;
     height: 70px;
@@ -91,7 +91,7 @@
 .message {
     color: white;
     background-color: #4C5A6B;
-    opacity: 0.87;
+    opacity: 0.9;
     padding: 20px 50px 20px 50px;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .subSaveContainer {
-    padding: 20px;
+    padding: 20px 20px 0 20px;
 
     .description {
         font-size: 12pt;
@@ -175,7 +175,7 @@
 }
 
 .mainAccountContainer {
-    padding: 20px;
+    padding: 20px 20px 0 20px;
 
     .mainAccountForm {
         margin: 20px 0 20px 0;

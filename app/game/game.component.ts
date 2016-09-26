@@ -26,9 +26,11 @@ export class GameComponent implements OnInit {
     private subSaveVisibility = false;
     private saveMenuVisibility = false;
     private menuButtonVisibility = true;
+    private messageVisibility = true;
     private saveContainerToggle = false;
     private isFilled1 = false;
     private isFilled2 = false;
+    private transferText;
     @ViewChild("myWebView") webView;//: webViewModule.WebView;
     @ViewChild("screenshot") screenshot;
     @ViewChild("button1") button;
@@ -174,13 +176,17 @@ export class GameComponent implements OnInit {
     }
 
     transferIn() {
+        this.transferText = "进";
         this.saveVisibility = !this.saveVisibility;
         this.menuVisibility = false;
+        this.messageVisibility = true;
     }
 
     transferOut() {
+        this.transferText = "出";
         this.saveVisibility = !this.saveVisibility;
         this.menuVisibility = false;
+        this.messageVisibility = true;
     }
 
     saveButtonTap() {
@@ -244,32 +250,37 @@ export class GameComponent implements OnInit {
     }
 
     selection() {
-        this.subSaveVisibility = true;
-        this.saveVisibility = false;
+        if (this.messageVisibility === true) {
+            this.messageVisibility = false;
+        } else {
+            this.subSaveVisibility = true;
+            this.saveVisibility = false;
+        }
     }
+
     closeSubSaveAccount() {
         this.subSaveVisibility = false;
     }
 
     updateMenuBtnColor() {
-        var self = this;
-        var webViewImage;
+        // var self = this;
+        // var webViewImage;
 
-        this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
-            // alert('finished');
-            webViewImage = plugin.getImage(self.webView.nativeElement);
-            self.img = webViewImage;
+        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+        //     // alert('finished');
+        //     webViewImage = plugin.getImage(self.webView.nativeElement);
+        //     self.img = webViewImage;
 
-            console.dump(self.img);
-            var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
-            // console.dump(colors);
-            var rgb = colors.IosPalette.primaryColor;
-            var r = Math.floor(rgb._r);
-            var g = Math.floor(rgb._g);
-            var b = Math.floor(rgb._b);
-            // console.log(r + ',' + g + ',' + b);
+        //     console.dump(self.img);
+        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+        //     // console.dump(colors);
+        //     var rgb = colors.IosPalette.primaryColor;
+        //     var r = Math.floor(rgb._r);
+        //     var g = Math.floor(rgb._g);
+        //     var b = Math.floor(rgb._b);
+        //     // console.log(r + ',' + g + ',' + b);
 
-            self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
-        })
+        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // })
     }
 }

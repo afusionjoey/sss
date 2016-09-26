@@ -1,6 +1,5 @@
 "use strict";
 var core_1 = require("@angular/core");
-var webViewModule = require("ui/web-view");
 var dialogs = require("ui/dialogs");
 var plugin = require("nativescript-screenshot");
 var imageColorModule = require('nativescript-image-colors/nativescript-image-colors');
@@ -16,6 +15,7 @@ var GameComponent = (function () {
         this.subSaveVisibility = false;
         this.saveMenuVisibility = false;
         this.menuButtonVisibility = true;
+        this.messageVisibility = true;
         this.saveContainerToggle = false;
         this.isFilled1 = false;
         this.isFilled2 = false;
@@ -136,12 +136,16 @@ var GameComponent = (function () {
         // console.dump(this.transferContainer.nativeElement);
     };
     GameComponent.prototype.transferIn = function () {
+        this.transferText = "进";
         this.saveVisibility = !this.saveVisibility;
         this.menuVisibility = false;
+        this.messageVisibility = true;
     };
     GameComponent.prototype.transferOut = function () {
+        this.transferText = "出";
         this.saveVisibility = !this.saveVisibility;
         this.menuVisibility = false;
+        this.messageVisibility = true;
     };
     GameComponent.prototype.saveButtonTap = function () {
         this.saveMenuVisibility = !this.saveMenuVisibility;
@@ -195,29 +199,34 @@ var GameComponent = (function () {
         }
     };
     GameComponent.prototype.selection = function () {
-        this.subSaveVisibility = true;
-        this.saveVisibility = false;
+        if (this.messageVisibility === true) {
+            this.messageVisibility = false;
+        }
+        else {
+            this.subSaveVisibility = true;
+            this.saveVisibility = false;
+        }
     };
     GameComponent.prototype.closeSubSaveAccount = function () {
         this.subSaveVisibility = false;
     };
     GameComponent.prototype.updateMenuBtnColor = function () {
-        var self = this;
-        var webViewImage;
-        this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args) {
-            // alert('finished');
-            webViewImage = plugin.getImage(self.webView.nativeElement);
-            self.img = webViewImage;
-            console.dump(self.img);
-            var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
-            // console.dump(colors);
-            var rgb = colors.IosPalette.primaryColor;
-            var r = Math.floor(rgb._r);
-            var g = Math.floor(rgb._g);
-            var b = Math.floor(rgb._b);
-            // console.log(r + ',' + g + ',' + b);
-            self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
-        });
+        // var self = this;
+        // var webViewImage;
+        // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
+        //     // alert('finished');
+        //     webViewImage = plugin.getImage(self.webView.nativeElement);
+        //     self.img = webViewImage;
+        //     console.dump(self.img);
+        //     var colors = imageColorModule.ImageColors.getColorPalette(webViewImage);
+        //     // console.dump(colors);
+        //     var rgb = colors.IosPalette.primaryColor;
+        //     var r = Math.floor(rgb._r);
+        //     var g = Math.floor(rgb._g);
+        //     var b = Math.floor(rgb._b);
+        //     // console.log(r + ',' + g + ',' + b);
+        //     self.button.nativeElement.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        // })
     };
     __decorate([
         core_1.ViewChild("myWebView"), 

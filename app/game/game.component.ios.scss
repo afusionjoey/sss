@@ -1,6 +1,6 @@
 .menuBtn {
     border-radius: 44;
-    background-color: rgba(198, 0, 0, 0.6);
+    background-color: rgba(198, 0, 0, 0.7);
     color: white;
     width: 88px;
     height: 88px;
@@ -10,30 +10,8 @@
     horizontal-align: right;
 }
 
-.menu {
-    padding: 0 10px 0 10px;
-    margin: 0;
-    border-bottom: 1px solid black;
-}
-
-.transfer, .money, .save {
-    background-color: red;
-    width: 50px;
-    height: 50px;
-    border-radius: 25;
-    horizontal-align: right;
-}
-
-.transfer {
-    margin: -150px 60px 0 0;
-}
-
-.money {
-    margin: 0 100px 0 0;
-}
-
-.save {
-    margin: 150px 60px 0 0;
+.menuContainer {
+    margin: -50px －44px 0 0;
 }
     
 .thin {
@@ -46,9 +24,7 @@
 
 .redText {
     color: #CD1F1F;
-    // padding: 20px;
-    border: 1px solid black;
-    // opacity: 0.8;
+
     Button {
         font-size: 13pt;
     }
@@ -56,6 +32,9 @@
 
 .whiteBG {
     background-color: white;
+    /* BG: */
+    background: rgba(255,255,255,0.80);
+    box-shadow: -2px 1px 4px 0px rgba(0,0,0,0.50);
 }
 
 .divider {
@@ -72,7 +51,7 @@
 }
 
 .closeBtn {
-    margin: -20px -20px 0 0;
+    margin: -15px 5px 0 0;
 }
 
 .autoWH {
@@ -83,7 +62,7 @@
 .submitBtn {
     color: white;
     background-color: #979797;
-    // width: 100%;
+    width: 100%;
 }
 
 .message {
@@ -108,11 +87,21 @@
 }
 
 .optionsBar {
-    padding: 3px;
-    background-color: rgba(198, 0, 0, 0.6);
+    padding: 0;
+    background-color: rgba(198, 0, 0, 0.7);
+    height: 88px;
+
+    .optionsBarInfo {
+        width: 270px;
+        padding: 0 0 0 5px;
+        background-image: url('http://www.colorhexa.com/edb4b4.png');
+        background-repeat: repeat-y;
+        background-position: right;
+        background-size: 1px 1px;
+    }
 
     .optionsBarTop {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 
         .cent {
             font-size: 13pt;
@@ -126,9 +115,7 @@
     }
 
     .optionsBarBottom {
-        width: 340px;
         overflow: scroll;
-        // overflow-style: move;
     }
 
     .description {
@@ -146,12 +133,46 @@
     }
 
     .icon {
-        font-size: 50pt;
+        font-size: 35pt;
+        padding: 0 15px 0 15px;
+        // border-width: 1;
+        // border-color: white;
+    }
+}
+
+.transferMenuContainer {
+    background-color: rgba(255, 255, 255, 0.8);
+
+    .options {
+        margin: 0;
+        background-image: url('http://www.colorhexa.com/edb4b4.png');
+        background-repeat: repeat-y;
+        background-position: right;
+        background-size: 1px 1px;
+
+        .optionsBtn {
+            font-size: 14pt;
+            font-weight: 700;
+            padding: 5px 10px 5px 10px;
+        }
+    }
+
+    .mainBtn {
+        font-weight: 700;
+        font-size: 16pt;
+        padding: 5px 10px 5px 10px;
     }
 }
 
 .transferContainer {
-    padding: 20px;
+    padding: 20px 0 0 0;
+    width: 40%;
+    // border-color: #EDB4B4;
+    // border-width: 1;
+
+    .header {
+        margin: auto auto auto 20px;
+    }
 
     .description {
         font-size: 12pt;
@@ -160,10 +181,44 @@
     .subwallets {
         margin: 10px 20px 10px 20px;
     }
+
+    .mainBtn {
+        font-weight: 700;
+        font-size: 16pt;
+    }
+}
+
+.saveContainer {
+    background-color: rgba(255, 255, 255, 0.8);
+
+    .options {
+        width: 270px;
+        padding: 0 10px 0 10px;
+        background-image: url('http://www.colorhexa.com/edb4b4.png');
+        background-repeat: repeat-y;
+        background-position: right;
+        background-size: 1px 1px;
+
+        .description {
+            font-weight: 700;
+            font-size: 16pt;
+        }
+    }
+
+    .mainBtn {
+        font-weight: 700;
+        font-size: 16pt;
+        padding: 5px 10px 5px 10px;
+    }
 }
 
 .subSaveContainer {
-    padding: 20px 20px 0 20px;
+    padding: 20px 0 0 0;
+    width: 40%;
+
+    .header {
+        margin: auto auto auto 20px;
+    }
 
     .description {
         font-size: 12pt;
@@ -188,14 +243,114 @@
 }
 
 .mainAccountContainer {
-    padding: 20px 20px 0 20px;
+    padding: 20px 0 0 0;
+    width: 40%;
+    border-radius: 10px;
+
+    .header {
+        margin: auto auto 0 20px;
+
+        .headerTitle {
+            font-weight: 700;
+        }
+    }
 
     .mainAccountForm {
-        margin: 20px 0 20px 0;
+        margin: 20px;
         color: #CD1F1F;
     }
 
     .description {
         font-size: 12pt;
     }
+
+    .submitBtn {
+        padding: 10px auto 10px auto;
+    }
+}
+
+.offlineTopUpContainer {
+    padding: 20px 0 0 0;
+    width: 40%;
+
+    .header {
+        margin: auto auto auto 20px;
+    }
+    
+    .headerTitle {
+        font-weight: 700;
+    }
+
+    .description {
+        font-size: 12pt;
+    }
+
+    .bankSelection {
+        margin: 0 20px 10px 20px;
+
+        .bank {
+            padding: 5px 10px;
+            background-color: #CD1F1F;
+            color: white;
+        }
+
+        .bankDropDown {
+            background-color: #FFCDCD;
+            width: 100%;
+            padding: 5px 10px;
+        }
+
+        .submitBtn {
+            padding: 10px auto 10px auto;
+        }
+    }
+
+    .amountInput {
+        margin: 0 0 10px 0;
+        width: 100%;
+
+        TextField {
+            padding: 5px 10px;
+        }
+    }
+
+    .contactOptions {
+        border-color: #C60000;
+        border-width: 1;
+        margin: 0 0 20px 0;
+        font-size: 12pt;
+        margin: auto 20px;
+        // padding: 5px auto 5px auto;
+
+        .amountInput {
+            margin: auto 20px;
+        }
+
+        .borderRight {
+            background-repeat: repeat-y;
+            background-position: right;
+            background-size: 1px 1px;
+            padding: 5px auto 5px auto;
+        }
+    }
+}
+
+.red {
+    background-image: url('http://www.colorhexa.com/c60000.png');
+}
+
+.pink {
+    background-image: url('http://www.colorhexa.com/edb4b4.png');
+}
+
+.borderRight {
+    background-repeat: repeat-y;
+    background-position: right;
+    background-size: 1px 1px;
+}
+
+.borderBottom {
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 1px 1px;
 }

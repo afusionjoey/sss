@@ -6,7 +6,9 @@ import image = require("ui/image");
 var plugin = require("nativescript-screenshot");
 var imageColorModule = require('nativescript-image-colors/nativescript-image-colors');
 // import { ImageColors  } from 'nativescript-image-colors/nativescript-image-colors';
-
+import { Color } from "color";
+import { setHintColor } from "../utils/hint-util";
+import { TextField } from "ui/text-field";
 
 @Component({
     selector: "game",
@@ -27,10 +29,12 @@ export class GameComponent implements OnInit {
     private saveMenuVisibility = false;
     private menuButtonVisibility = true;
     private messageVisibility = true;
-    private saveContainerToggle = false;
     private isFilled1 = false;
     private isFilled2 = false;
+    private isFilled3 = false;
     private transferText;
+    private saveContainerRow = 1;
+    private optionsBarRow = 2;
     @ViewChild("myWebView") webView;//: webViewModule.WebView;
     @ViewChild("screenshot") screenshot;
     @ViewChild("button1") button;
@@ -39,7 +43,15 @@ export class GameComponent implements OnInit {
     @ViewChild("transferContainer") transferContainer;
     @ViewChild("transferAmt") transferAmt;
     @ViewChild("transferSubmitBtn") transferSubmitBtn;
+    @ViewChild("transferSubmitBtn2") transferSubmitBtn2;
+    @ViewChild("transferSubmitBtn3") transferSubmitBtn3;
     @ViewChild("mainAccountSubmitBtn") mainAccountSubmitBtn;
+
+    @ViewChild("topUp") topUp;
+    @ViewChild("remark") remark;
+    @ViewChild("payAmt") payAmt;
+    @ViewChild("passcode") passcode;
+    @ViewChild("merchantBank") merchantBank;
 
     ngAfterViewChecked() {
         // var self = this;
@@ -64,6 +76,7 @@ export class GameComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.setTextFieldColors();
         // var self = this;
         // var webViewImage;
 
@@ -158,19 +171,27 @@ export class GameComponent implements OnInit {
         let animations = [];
 
         this.menuVisibility = !this.menuVisibility;
+        this.menuButtonVisibility = false;
         // Fade out the initial content over one half second
-        // menuContainer.animate({
-        //     opacity: 0,
-        //     duration: 500
-        // }).then(function() {
-        // // this.menuVisibility = true;
-        //     alert();
-        // })
+        this.menuContainer.nativeElement.animate({
+            translate: { x: 0, y: 0},
+            duration: 500
+        }).then(function() {
+        // this.menuVisibility = true;
+            // alert();
+        })
     }
 
     transferButtonTap() {
         this.transferMenuVisibility = !this.transferMenuVisibility;
         this.saveMenuVisibility = false;
+        if (this.transferMenuVisibility === true) {
+            this.saveContainerRow = 3;
+            this.optionsBarRow = 1;
+        } else {
+            this.saveContainerRow = 1;
+            this.optionsBarRow = 3;
+        }
         // this.saveContainerToggle = !this.saveContainerToggle;
         // console.dump(this.transferContainer.nativeElement);
     }
@@ -192,6 +213,14 @@ export class GameComponent implements OnInit {
     saveButtonTap() {
         this.saveMenuVisibility = !this.saveMenuVisibility;
         this.transferMenuVisibility = false;
+
+        if (this.transferMenuVisibility === true) {
+            this.saveContainerRow = 3;
+            this.optionsBarRow = 1;
+        } else {
+            this.saveContainerRow = 1;
+            this.optionsBarRow = 3;
+        }
     }
 
     mainAccountTap() {
@@ -205,7 +234,7 @@ export class GameComponent implements OnInit {
     }
 
     bankTransferTap() {
-        this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.offlineTopUpVisibility = !this.offlineTopUpVisibility;
         this.menuVisibility = false;
     }
 
@@ -214,7 +243,15 @@ export class GameComponent implements OnInit {
     }
 
     close() {
-        this.menuVisibility = false;
+        var self = this;
+
+        this.menuContainer.nativeElement.animate({
+            translate: { x: 200, y: 0},
+            duration: 500
+        }).then(function(){
+            self.menuVisibility = false;
+            self.menuButtonVisibility = true;
+        });
     }
 
     closeMainAccount() {
@@ -242,10 +279,20 @@ export class GameComponent implements OnInit {
     textChange2(field1, field2) {
         if (field1 != '' || field2 != '') {
             this.isFilled2 = true;
-            this.transferSubmitBtn.nativeElement.style.backgroundColor = '#CD1F1F';
+            this.transferSubmitBtn2.nativeElement.style.backgroundColor = '#CD1F1F';
         } else {
             this.isFilled2 = false;
-            this.transferSubmitBtn.nativeElement.style.backgroundColor = '#979797';
+            this.transferSubmitBtn2.nativeElement.style.backgroundColor = '#979797';
+        }
+    }
+
+    textChange3(field1, field2) {
+        if (field1 != '' || field2 != '') {
+            this.isFilled3 = true;
+            this.transferSubmitBtn3.nativeElement.style.backgroundColor = '#CD1F1F';
+        } else {
+            this.isFilled3 = false;
+            this.transferSubmitBtn3.nativeElement.style.backgroundColor = '#979797';
         }
     }
 
@@ -260,6 +307,27 @@ export class GameComponent implements OnInit {
 
     closeSubSaveAccount() {
         this.subSaveVisibility = false;
+    }
+
+    closeOfflineTopUp() {
+        this.offlineTopUpVisibility = false;
+    }
+
+    setTextFieldColors() {
+        let topUp = <TextField>this.topUp.nativeElement;
+        let remark = <TextField>this.remark.nativeElement;
+        let payAmt = <TextField>this.payAmt.nativeElement;
+        let passcode = <TextField>this.passcode.nativeElement;
+        let transferAmt = <TextField>this.transferAmt.nativeElement;
+        let merchantBank = <TextField>this.merchantBank.nativeElement;
+        let hintColor = new Color("#C60000");
+        var allTextField = [topUp, remark, payAmt, passcode, transferAmt, merchantBank];
+
+        allTextField.map((tf) => {
+            tf.color = hintColor;
+            setHintColor({ view: tf, color: hintColor });
+            // console.log(tf);
+        });
     }
 
     updateMenuBtnColor() {

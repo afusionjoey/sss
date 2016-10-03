@@ -1,28 +1,35 @@
 <GridLayout columns="*" (tap)="close($event)">
     <Image #screenshot [src]="img" visibility="collapse" col="0"></Image>
     <Image (tap)="exitGame()" class="closeBtn" src="res://white_close_btn" horizontalAlignment="left"></Image>
-    <WebView #myWebView (loaded)="updateMenuBtnColor()" col="0" [src]="url"></WebView>
+    <!--<WebView #myWebView (loaded)="updateMenuBtnColor()" col="0" [src]="url"></WebView>-->
+    <Image src="res://ingame_monkeyKing"></Image>
     <Button #button1 (tap)="menuButtonTap($event)" text="¥" [visibility]="menuButtonVisibility ? 'visible' : 'collapsed'" col="0" class="menuBtn"></Button>
 
-    <GridLayout #menuContainer columns="auto" rows="auto, auto, auto" [visibility]="menuVisibility ? 'visible' : 'collapsed'" horizontalAlignment="right" verticalAlignment="middle" (tap)="doNothing($event)">
-        <GridLayout #transferContainer id="transferContainer" class="menu redText whiteBG" row="0" columns="auto, auto" rows="auto, auto" horizontalAlignment="right">
-            <Button class="thick" [visibility]="transferMenuVisibility ? 'visible' : 'collapsed'" text="进" col="0" row="0" (tap)="transferIn($event)"></Button>
-            <Button class="thick" [visibility]="transferMenuVisibility ? 'visible' : 'collapsed'" text="出" col="0" row="1" (tap)="transferOut($event)"></Button>
-            <Button class="thick" text="转账" (tap)="transferButtonTap($event)" col="1" rowSpan="2" verticalAlignment="top"></Button>
+    <GridLayout #menuContainer class="menuContainer" columns="auto" rows="auto, auto, auto" [visibility]="menuVisibility ? 'visible' : 'collapsed'" horizontalAlignment="right" verticalAlignment="middle" (tap)="doNothing($event)">
+        <GridLayout #transferContainer class="transferMenuContainer redText whiteBG" row="0" columns="auto, auto" horizontalAlignment="right">
+            <StackLayout class="options" [visibility]="transferMenuVisibility ? 'visible' : 'collapsed'" col="0">   
+                <Button class="thick optionsBtn borderBottom pink" text="进" (tap)="transferIn($event)"></Button>
+                <Button class="thick optionsBtn" text="出" (tap)="transferOut($event)"></Button>
+            </StackLayout>
+            <Button class="thick mainBtn" text="转账" (tap)="transferButtonTap($event)" col="1" verticalAlignment="top"></Button>
         </GridLayout>
 
-        <GridLayout #saveContainer id="saveContainer" [visibility]="saveContainerToggle ? 'collapsed' : 'visible'" class="menu redText whiteBG" row="1" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
-            <Button horizontalAlignment="left" class="thick divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
-            <Button horizontalAlignment="right" class="thin divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>
-            <Button horizontalAlignment="right" class="thick" text="存款" col="2" row="0" rowSpan="2" (tap)="saveButtonTap($event)" verticalAlignment="top"></Button>
-            <Button horizontalAlignment="left" class="thick divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="微信支付" col="0" row="1" (tap)="weChatPayTap($event)"></Button>
-            <Button horizontalAlignment="right" class="thin divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥1000" col="1" row="1" (tap)="weChatPayTap($event)"></Button>
-            <Button horizontalAlignment="left" class="thick divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="银行转账" col="0" row="2" (tap)="bankTransferTap($event)"></Button>
-            <Button horizontalAlignment="right" class="thin divider" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥200,000" col="1" row="2" (tap)="bankTransferTap($event)"></Button>
+        <GridLayout #saveContainer class="saveContainer redText whiteBG" [row]="saveContainerRow" columns="auto, auto" horizontalAlignment="right">
+            <GridLayout class="options" rows="auto, auto, auto" col="0" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'">
+                <Button horizontalAlignment="left" class="description" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
+                <Button horizontalAlignment="right" class="thin" text="¥50 - ¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>
+                <Button horizontalAlignment="left" class="description" text="微信支付" col="0" row="1" (tap)="weChatPayTap($event)"></Button>
+                <Button horizontalAlignment="right" class="thin" text="¥50 - ¥1000" col="1" row="1" (tap)="weChatPayTap($event)"></Button>
+                <Button horizontalAlignment="left" class="description" text="银行转账" col="0" row="2" (tap)="bankTransferTap($event)"></Button>
+                <Button horizontalAlignment="right" class="thin" text="¥20 - ¥200,000" col="1" row="2" (tap)="bankTransferTap($event)"></Button>
+            </GridLayout>
+            <StackLayout col="1">
+                <Button class="thick mainBtn" text="存款" (tap)="saveButtonTap($event)" verticalAlignment="top"></Button>
+            </StackLayout>
         </GridLayout>
 
-        <GridLayout class="optionsBar" columns="auto, auto" row="2" horizontalAlignment="right">
-            <StackLayout col="0">
+        <GridLayout class="optionsBar" columns="auto, auto" [row]="optionsBarRow" horizontalAlignment="right">
+            <StackLayout class="optionsBarInfo" col="0">
                 <StackLayout orientation="horizontal" class="optionsBarTop" horizontalAlignment="left">
                     <Label class="thin divider description" text="主账户余额"></Label>
                     <Label class="thick yuan" text="¥9,725,000"></Label>
@@ -47,92 +54,93 @@
             </StackLayout>
             <Label class="thick icon" text="¥" col="1"></Label>
         </GridLayout>
-
-        <GridLayout #saveContainer2 id="saveContainer2" [visibility]="saveContainerToggle ? 'visible' : 'collapsed'" class="redText whiteBG" row="3" columns="auto, auto, auto" rows="auto, auto, auto" horizontalAlignment="right">
-            <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="主账户余额" col="0" row="0" (tap)="mainAccountTap($event)"></Button>
-            <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥49,999" col="1" row="0" (tap)="mainAccountTap($event)"></Button>
-            <Button class="thick" text="存款" col="2" row="0" rowSpan="2" (tap)="saveButtonTap($event)" verticalAlignment="top"></Button>
-            <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="微信支付" col="0" row="1" (tap)="weChatPayTap($event)"></Button>
-            <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥1000" col="1" row="1" (tap)="weChatPayTap($event)"></Button>
-            <Button class="thick" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="银行转账" col="0" row="2" (tap)="bankTransferTap($event)"></Button>
-            <Button class="thin" [visibility]="saveMenuVisibility ? 'visible' : 'collapsed'" text="¥200,000" col="1" row="2" (tap)="bankTransferTap($event)"></Button>
-        </GridLayout>
     </GridLayout>
 
-    <GridLayout class="redText whiteBG" columns="auto, auto" rows="auto, auto, auto, auto, auto, auto" [visibility]="offlineTopUpVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <Label text="线下充值" row="0" col="0"></Label>
-        <Label text="¥20 - ¥200,000" row="0" col="1"></Label>
-        <Label text="银行名称" row="1" col="0"></Label>
-        <TextField hint="招商银行" row="1" col="1"></TextField>
-        <TextField hint="充入金额" colSpan="2" row="2"></TextField>
-        <TextField hint="备注" colSpan="2" row="3"></TextField>
-        <Label text="手机短信通知" row="4" col="0"></Label>
-        <Label text="电子邮件通知" row="4" col="1"></Label>
-        <Button text="确定" row="5" colSpan="2"></Button>
+    <GridLayout class="offlineTopUpContainer redText whiteBG" columns="*" rows="auto, auto, auto" [visibility]="offlineTopUpVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <StackLayout class="header" orientation="horizontal" row="0" horizontalAlignment="left" verticalAlignment="top">
+            <Label class="headerTitle divider" text="线下充值"></Label>
+            <Label class="description" text="¥20 - ¥200,000"></Label>
+        </StackLayout>
+        <StackLayout row="1" horizontalAlignment="center" verticalAlignment="middle">
+            <StackLayout class="bankSelection" (onTap)="selection($event)" orientation="horizontal" horizontalAlignment="left">
+                <Label class="bank" text="银行名称"></Label>
+                <TextField #merchantBank class="bankDropDown" hint="招商银行"></TextField>
+            </StackLayout>
+            <StackLayout class="amountInput" horizontalAlignment="left">
+                <TextField #topUp (textChange)="textChange2(transferAmt.text, passcode.text)" class="borderBottom red" hint="充入金额"></TextField>
+                <TextField #remark (textChange)="textChange2(transferAmt.text, passcode.text)" class="borderBottom red" hint="备注"></TextField>
+            </StackLayout>
+            <GridLayout class="contactOptions" columns="*, *">
+                <GridLayout class="borderRight red">
+                    <Label text="手机短信通知" col="0"></Label>
+                </GridLayout>
+                <Label text="电子邮件通知" col="1"></Label>
+            </GridLayout>
+        </StackLayout>
+        <Button row="2" class="submitBtn" #transferSubmitBtn [isEnabled]="isFilled3" text="确定"></Button>
+        <Image (tap)="closeOfflineTopUp()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top" stretch ="none"></Image>
     </GridLayout>
 
-    <GridLayout id="mainAccountContainer" class="mainAccountContainer redText whiteBG" columns="auto" rows="auto, auto, auto" [visibility]="mainAccountVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <StackLayout orientation="horizontal" row="0" col="0">
-            <Label class="divider" text="主账户余额"></Label>
+    <GridLayout class="mainAccountContainer redText whiteBG" columns="auto" rows="auto, auto, auto" [visibility]="mainAccountVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <StackLayout class="header" orientation="horizontal" row="0" horizontalAlignment="left">
+            <Label class="headerTitle divider" text="主账户余额"></Label>
             <Label class="description" text="¥50 -"></Label>
         </StackLayout>
-        <TextField class="mainAccountForm" #payAmt (textChange)="textChange1(payAmt.text)" hint="支付金额(¥)" row="1"></TextField>
+        <TextField class="mainAccountForm borderBottom red" #payAmt (textChange)="textChange1(payAmt.text)" hint="支付金额(¥)" row="1"></TextField>
+        <Button row="2" class="submitBtn" #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定"></Button>
         <Image (tap)="closeMainAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top"></Image>
-        <StackLayout orientation="horizontal" verticalAlignment="bottom" horizontalAlignment="center" row="2">
-            <Button class="submitBtn" #mainAccountSubmitBtn [isEnabled]="isFilled1" text="确定"></Button>
-        </StackLayout>
     </GridLayout>
 
-    <GridLayout class="redText whiteBG transferContainer" columns="auto" rows="auto, auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <StackLayout class="header" row="0" orientation="horizontal" horizontalAlignment="left" verticalAlignment="top">
+    <GridLayout class="redText whiteBG transferContainer" columns="*" rows="auto, auto" [visibility]="saveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <StackLayout class="header" orientation="horizontal" row="0" horizontalAlignment="left" verticalAlignment="top">
             <Label class="headerTitle" [text]="transferText"></Label>
             <Label class="description" text="点击户口转钱"></Label>
         </StackLayout>
-        <GridLayout row="1" columns="auto, auto" rows="auto, auto, auto, auto, auto, auto, auto, auto" horizontalAlignment="center" verticalAlignment="middle">
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="1">
+        <GridLayout row="1" columns="*, *" rows="auto, auto, auto, auto" horizontalAlignment="center" verticalAlignment="middle">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="0">
                 <Label class="description" text="实况电投"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="1">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="0">
                 <Label class="description" text="沙巴体育"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="2">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="1">
                 <Label class="description" text="金星馆"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="2">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="1">
                 <Label class="description" text="木星馆"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="3">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="2">
                 <Label class="description" text="水星馆"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="3">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="2">
                 <Label class="description" text="土星馆"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="4">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="0" row="3">
                 <Label class="description" text="Playtech"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="4">
+            <StackLayout class="subwallets" (onTap)="selection($event)" col="1" row="3">
                 <Label class="description" text="TTG"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
         </GridLayout>
-        <Image (tap)="closeSave()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top"></Image>
         <Label (tap)="selection()" text="点击户口转钱" class="message" [visibility]="messageVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle" rowSpan="2"></Label>
+        <Image (tap)="closeSave()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top" stretch ="none"></Image>
     </GridLayout>
 
-    <GridLayout class="subSaveContainer redText whiteBG" columns="auto" rows="auto, auto, *" [visibility]="subSaveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
-        <StackLayout class="header" orientation="horizontal" row="0">
+    <GridLayout class="subSaveContainer redText whiteBG" columns="*" rows="auto, auto, auto" [visibility]="subSaveVisibility ? 'visible' : 'collapsed'" horizontalAlignment="center" verticalAlignment="middle">
+        <StackLayout class="header" orientation="horizontal" row="0" horizontalAlignment="left" verticalAlignment="top">
             <Label class="headerTitle" text="进"></Label>
             <Label class="description divider" horizontalAlignment="right" text="主账户余额"></Label>
             <Label class="value" text="¥725.00"></Label>
         </StackLayout>
-        <GridLayout row="1" columns="auto, auto" rows="auto, auto, auto" horizontalAlignment="center" verticalAlignment="middle">
+        <GridLayout row="1" columns="*, *" rows="auto, auto, auto" horizontalAlignment="center" verticalAlignment="middle">
             <StackLayout class="subwallets selected" (onTap)="selection($event)" col="0" row="1">
                 <Label class="description" text="Playtech"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
@@ -146,9 +154,7 @@
                 <TextField #passcode (textChange)="textChange2(transferAmt.text, passcode.text)" hint="红利代码" colSpan="2"></TextField>
             </StackLayout>
         </GridLayout>
-        <Image (tap)="closeSubSaveAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top"></Image>
-        <StackLayout verticalAlignment="bottom" horizontalAlignment="center" row="2">
-            <Button class="submitBtn" #transferSubmitBtn [isEnabled]="isFilled2" text="确定"></Button>
-        </StackLayout>
+        <Button row="2" class="submitBtn" #transferSubmitBtn2 [isEnabled]="isFilled2" text="确定"></Button>
+        <Image (tap)="closeSubSaveAccount()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top" stretch ="none"></Image>
     </GridLayout>
 </GridLayout>

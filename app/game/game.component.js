@@ -4,6 +4,8 @@ var dialogs = require("ui/dialogs");
 var plugin = require("nativescript-screenshot");
 var imageColorModule = require('nativescript-image-colors/nativescript-image-colors');
 // import { ImageColors  } from 'nativescript-image-colors/nativescript-image-colors';
+var color_1 = require("color");
+var hint_util_1 = require("../utils/hint-util");
 var GameComponent = (function () {
     function GameComponent() {
         this.url = 'http://mobile3.gameassists.co.uk/MobileWebServices/casino/game/launch/12bet/ageOfDiscovery/en?casinoID=4107&lobbyURL=http://www.12bet.uk/en-gb/casino&bankingURL=&loginType=VanguardSessionToken&authToken=Flash_4760821572597542023&isRGI=true';
@@ -16,9 +18,11 @@ var GameComponent = (function () {
         this.saveMenuVisibility = false;
         this.menuButtonVisibility = true;
         this.messageVisibility = true;
-        this.saveContainerToggle = false;
         this.isFilled1 = false;
         this.isFilled2 = false;
+        this.isFilled3 = false;
+        this.saveContainerRow = 1;
+        this.optionsBarRow = 2;
     }
     ;
     GameComponent.prototype.ngAfterViewChecked = function () {
@@ -40,6 +44,7 @@ var GameComponent = (function () {
         // })
     };
     GameComponent.prototype.ngOnInit = function () {
+        this.setTextFieldColors();
         // var self = this;
         // var webViewImage;
         // this.webView.nativeElement.on(webViewModule.WebView.loadFinishedEvent, function (args: webViewModule.LoadEventData) {
@@ -120,18 +125,27 @@ var GameComponent = (function () {
         // let menuContainer = this.menuContainer.nativeElement;
         var animations = [];
         this.menuVisibility = !this.menuVisibility;
+        this.menuButtonVisibility = false;
         // Fade out the initial content over one half second
-        // menuContainer.animate({
-        //     opacity: 0,
-        //     duration: 500
-        // }).then(function() {
-        // // this.menuVisibility = true;
-        //     alert();
-        // })
+        this.menuContainer.nativeElement.animate({
+            translate: { x: 0, y: 0 },
+            duration: 500
+        }).then(function () {
+            // this.menuVisibility = true;
+            // alert();
+        });
     };
     GameComponent.prototype.transferButtonTap = function () {
         this.transferMenuVisibility = !this.transferMenuVisibility;
         this.saveMenuVisibility = false;
+        if (this.transferMenuVisibility === true) {
+            this.saveContainerRow = 3;
+            this.optionsBarRow = 1;
+        }
+        else {
+            this.saveContainerRow = 1;
+            this.optionsBarRow = 3;
+        }
         // this.saveContainerToggle = !this.saveContainerToggle;
         // console.dump(this.transferContainer.nativeElement);
     };
@@ -150,6 +164,14 @@ var GameComponent = (function () {
     GameComponent.prototype.saveButtonTap = function () {
         this.saveMenuVisibility = !this.saveMenuVisibility;
         this.transferMenuVisibility = false;
+        if (this.transferMenuVisibility === true) {
+            this.saveContainerRow = 3;
+            this.optionsBarRow = 1;
+        }
+        else {
+            this.saveContainerRow = 1;
+            this.optionsBarRow = 3;
+        }
     };
     GameComponent.prototype.mainAccountTap = function () {
         this.mainAccountVisibility = !this.mainAccountVisibility;
@@ -160,14 +182,21 @@ var GameComponent = (function () {
         this.menuVisibility = false;
     };
     GameComponent.prototype.bankTransferTap = function () {
-        this.mainAccountVisibility = !this.mainAccountVisibility;
+        this.offlineTopUpVisibility = !this.offlineTopUpVisibility;
         this.menuVisibility = false;
     };
     GameComponent.prototype.doNothing = function () {
         this.menuVisibility = true;
     };
     GameComponent.prototype.close = function () {
-        this.menuVisibility = false;
+        var self = this;
+        this.menuContainer.nativeElement.animate({
+            translate: { x: 200, y: 0 },
+            duration: 500
+        }).then(function () {
+            self.menuVisibility = false;
+            self.menuButtonVisibility = true;
+        });
     };
     GameComponent.prototype.closeMainAccount = function () {
         this.mainAccountVisibility = false;
@@ -191,11 +220,21 @@ var GameComponent = (function () {
     GameComponent.prototype.textChange2 = function (field1, field2) {
         if (field1 != '' || field2 != '') {
             this.isFilled2 = true;
-            this.transferSubmitBtn.nativeElement.style.backgroundColor = '#CD1F1F';
+            this.transferSubmitBtn2.nativeElement.style.backgroundColor = '#CD1F1F';
         }
         else {
             this.isFilled2 = false;
-            this.transferSubmitBtn.nativeElement.style.backgroundColor = '#979797';
+            this.transferSubmitBtn2.nativeElement.style.backgroundColor = '#979797';
+        }
+    };
+    GameComponent.prototype.textChange3 = function (field1, field2) {
+        if (field1 != '' || field2 != '') {
+            this.isFilled3 = true;
+            this.transferSubmitBtn3.nativeElement.style.backgroundColor = '#CD1F1F';
+        }
+        else {
+            this.isFilled3 = false;
+            this.transferSubmitBtn3.nativeElement.style.backgroundColor = '#979797';
         }
     };
     GameComponent.prototype.selection = function () {
@@ -209,6 +248,24 @@ var GameComponent = (function () {
     };
     GameComponent.prototype.closeSubSaveAccount = function () {
         this.subSaveVisibility = false;
+    };
+    GameComponent.prototype.closeOfflineTopUp = function () {
+        this.offlineTopUpVisibility = false;
+    };
+    GameComponent.prototype.setTextFieldColors = function () {
+        var topUp = this.topUp.nativeElement;
+        var remark = this.remark.nativeElement;
+        var payAmt = this.payAmt.nativeElement;
+        var passcode = this.passcode.nativeElement;
+        var transferAmt = this.transferAmt.nativeElement;
+        var merchantBank = this.merchantBank.nativeElement;
+        var hintColor = new color_1.Color("#C60000");
+        var allTextField = [topUp, remark, payAmt, passcode, transferAmt, merchantBank];
+        allTextField.map(function (tf) {
+            tf.color = hintColor;
+            hint_util_1.setHintColor({ view: tf, color: hintColor });
+            // console.log(tf);
+        });
     };
     GameComponent.prototype.updateMenuBtnColor = function () {
         // var self = this;
@@ -262,9 +319,37 @@ var GameComponent = (function () {
         __metadata('design:type', Object)
     ], GameComponent.prototype, "transferSubmitBtn", void 0);
     __decorate([
+        core_1.ViewChild("transferSubmitBtn2"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "transferSubmitBtn2", void 0);
+    __decorate([
+        core_1.ViewChild("transferSubmitBtn3"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "transferSubmitBtn3", void 0);
+    __decorate([
         core_1.ViewChild("mainAccountSubmitBtn"), 
         __metadata('design:type', Object)
     ], GameComponent.prototype, "mainAccountSubmitBtn", void 0);
+    __decorate([
+        core_1.ViewChild("topUp"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "topUp", void 0);
+    __decorate([
+        core_1.ViewChild("remark"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "remark", void 0);
+    __decorate([
+        core_1.ViewChild("payAmt"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "payAmt", void 0);
+    __decorate([
+        core_1.ViewChild("passcode"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "passcode", void 0);
+    __decorate([
+        core_1.ViewChild("merchantBank"), 
+        __metadata('design:type', Object)
+    ], GameComponent.prototype, "merchantBank", void 0);
     GameComponent = __decorate([
         core_1.Component({
             selector: "game",

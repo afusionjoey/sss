@@ -4,6 +4,6 @@
 //   AuthGuard
 // ];
 exports.appRoutes = [
-    { path: "", redirectTo: "/game", pathMatch: "full" }
+    { path: "", redirectTo: "/game", pathMatch: "full" },
 ];
 //# sourceMappingURL=app.routing.js.map

@@ -1,9 +1,15 @@
 {
     "private": false,
     "nativescript": {
-        "id": "org.nativescript.helloworldng"
+        "id": "org.nativescript.sss",
+        "tns-ios": {
+            "version": "next"
+        },
+        "tns-android": {
+            "version": "next"
+        }
     },
-    "name": "tns-template-hello-world-ng",
+    "name": "sss",
     "main": "main.js",
     "version": "2.3.0",
     "author": "Telerik <support@telerik.com>",

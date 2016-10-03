@@ -5,7 +5,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { appRoutes } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { GameModule } from "./game/game.module";
-import { HomeComponent } from "./home/home.component";
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   providers: [
@@ -14,11 +14,11 @@ import { HomeComponent } from "./home/home.component";
     NativeScriptModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(appRoutes),
-    GameModule
+    GameModule,
+    HomeModule
   ],
   declarations: [
-      AppComponent,
-      HomeComponent
+      AppComponent
   ],
   bootstrap: [AppComponent]
 })

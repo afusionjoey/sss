@@ -1,7 +1,12 @@
-    <WrapLayout orientation="horizontal" backgroundColor="lightgray">
+<GridLayout #mainPage (loaded)="pageLoaded([mainPage, saveBtn, transferBtn])">
+    <!--<WrapLayout orientation="horizontal" backgroundColor="lightgray">
         <Image width="50" (tap)="nav()" src="res://cleopatra"></Image>        
 
         <Image width="50" (tap)="nav()" src="res://game"></Image>
 
         <Image width="50" (tap)="nav()" src="res://game2"></Image>
-    </WrapLayout>
+    </WrapLayout>-->
+    <Button #saveBtn (tap)="save()" class="saveBtn" text="存"></Button>
+    <Button #transferBtn (tap)="transfer()" class="transferBtn" text="转"></Button>
+    <Button (tap)="main()" class="mainBtn" text="¥"></Button>
+</GridLayout>

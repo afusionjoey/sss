@@ -5,7 +5,7 @@ var router_1 = require("nativescript-angular/router");
 var app_routing_1 = require("./app.routing");
 var app_component_1 = require("./app.component");
 var game_module_1 = require("./game/game.module");
-var home_component_1 = require("./home/home.component");
+var home_module_1 = require("./home/home.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -16,11 +16,11 @@ var AppModule = (function () {
                 platform_1.NativeScriptModule,
                 router_1.NativeScriptRouterModule,
                 router_1.NativeScriptRouterModule.forRoot(app_routing_1.appRoutes),
-                game_module_1.GameModule
+                game_module_1.GameModule,
+                home_module_1.HomeModule
             ],
             declarations: [
-                app_component_1.AppComponent,
-                home_component_1.HomeComponent
+                app_component_1.AppComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

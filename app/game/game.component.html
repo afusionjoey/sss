@@ -67,8 +67,8 @@
                 <TextField #merchantBank class="bankDropDown" hint="招商银行"></TextField>
             </StackLayout>
             <StackLayout class="amountInput" horizontalAlignment="left">
-                <TextField #topUp (textChange)="textChange2(transferAmt.text, passcode.text)" class="borderBottom red" hint="充入金额"></TextField>
-                <TextField #remark (textChange)="textChange2(transferAmt.text, passcode.text)" class="borderBottom red" hint="备注"></TextField>
+                <TextField #topUp (textChange)="textChange3(topUp.text, remark.text)" class="offlineTopUpForm borderBottom red" hint="充入金额"></TextField>
+                <TextField #remark (textChange)="textChange3(topUp.text, remark.text)" class="offlineTopUpForm borderBottom red" hint="备注"></TextField>
             </StackLayout>
             <GridLayout class="contactOptions" columns="*, *">
                 <GridLayout class="borderRight red">
@@ -77,7 +77,7 @@
                 <Label text="电子邮件通知" col="1"></Label>
             </GridLayout>
         </StackLayout>
-        <Button row="2" class="submitBtn" #transferSubmitBtn [isEnabled]="isFilled3" text="确定"></Button>
+        <Button row="2" class="submitBtn" #transferSubmitBtn3 [isEnabled]="isFilled3" text="确定"></Button>
         <Image (tap)="closeOfflineTopUp()" class="closeBtn" src="res://button_close" horizontalAlignment="right" verticalAlignment="top" stretch ="none"></Image>
     </GridLayout>
 
@@ -149,9 +149,9 @@
                 <Label class="description" text="TTG"></Label>
                 <Label class="number" text="¥1,000,000"></Label>
             </StackLayout>
-            <StackLayout class="subSaveForm" row="2" colSpan="2">
-                <TextField #transferAmt (textChange)="textChange2(transferAmt.text, passcode.text)" hint="转账金额" colSpan="2"></TextField>
-                <TextField #passcode (textChange)="textChange2(transferAmt.text, passcode.text)" hint="红利代码" colSpan="2"></TextField>
+            <StackLayout class="subSaveForm" row="2" colSpan="2" horizontalAlignment="left">
+                <TextField #transferAmt class="red borderBottom" (textChange)="textChange2(transferAmt.text, passcode.text)" hint="转账金额" colSpan="2"></TextField>
+                <TextField #passcode class="red borderBottom" (textChange)="textChange2(transferAmt.text, passcode.text)" hint="红利代码" colSpan="2"></TextField>
             </StackLayout>
         </GridLayout>
         <Button row="2" class="submitBtn" #transferSubmitBtn2 [isEnabled]="isFilled2" text="确定"></Button>
